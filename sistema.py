@@ -360,7 +360,10 @@ def handle_reply(subject, sender, text, pdfs, allowed):
     n = int(m.group(1))
     if not hmac.compare_digest(m.group(2), token(n)):
         log("Código de ficha incorrecto; se ignora:", subject); return
-    if allowed and sender not in allowed:
+    # El código secreto de la ficha ya garantiza que la respuesta es tuya. Así también valen
+    # respuestas enviadas desde cualquiera de tus direcciones (alias de Gmail, Outlook, iCloud...)
+    # e incluso las que Gmail no llegó a entregar: se leen desde tu carpeta de Enviados.
+    if CFG.get("solo_remitentes_permitidos") and sender not in allowed:
         log("Remitente no autorizado:", sender); return
     f = load(FICHAS, {"items": {}})["items"].get(str(n))
     if not f:
