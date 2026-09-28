@@ -1,0 +1,32 @@
+name: "5) Copiar mi web actual"
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  copiar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copiar la web (solo lectura, no cambia nada)
+        run: |
+          mkdir -p sitio-actual && cd sitio-actual
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
+          wget --recursive --level=inf --page-requisites --adjust-extension --span-hosts \
+            --domains=jonandoni.com,www.jonandoni.com,i0.wp.com,i1.wp.com,i2.wp.com \
+            --reject-regex '(wp-json|/feed/|xmlrpc|replytocom|wp-login|wp-admin|/comments/|\?s=)' \
+            -e robots=off --wait=0.2 --tries=3 --timeout=30 -U "$UA" --no-verbose \
+            https://jonandoni.com/ https://jonandoni.com/en/ || true
+          for t in pages posts; do
+            curl -s -A "$UA" "https://jonandoni.com/wp-json/wp/v2/$t?per_page=100" -o "wp-$t.json" || true
+          done
+          curl -s -A "$UA" https://jonandoni.com/wp-sitemap.xml -o sitemap.xml || true
+          echo "Archivos copiados: $(find . -type f | wc -l)  Tamaño: $(du -sh . | cut -f1)"
+      - name: Guardar la copia
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add sitio-actual
+          git commit -m "Copia de la web actual" || true
+          git push
