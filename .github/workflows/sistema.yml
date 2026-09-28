@@ -1,0 +1,60 @@
+name: "Sistema web jonandoni.com"
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+    - cron: "0 6 1,15 * *"
+  workflow_dispatch:
+    inputs:
+      tarea:
+        description: "¿Qué quieres hacer?"
+        type: choice
+        options: [instalar, prueba, quincenal, buzon]
+        default: instalar
+permissions:
+  contents: write
+concurrency:
+  group: web
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GMAIL_USER: ${{ secrets.GMAIL_USER }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+      FICHA_SECRET: ${{ secrets.FICHA_SECRET }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - name: Elegir tarea
+        id: t
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then T="${{ inputs.tarea }}"
+          elif [ "${{ github.event.schedule }}" = "0 6 1,15 * *" ]; then T=quincenal
+          else T=buzon; fi
+          echo "tarea=$T" >> "$GITHUB_OUTPUT"
+          echo "Tarea: $T"
+      - name: Ejecutar
+        run: |
+          T="${{ steps.t.outputs.tarea }}"
+          if [ "$T" = "instalar" ]; then
+            python instalar_archivos.py && python build.py
+          elif [ -z "$GMAIL_USER" ] || [ -z "$FICHA_SECRET" ]; then
+            echo "Gmail todavía no está configurado: no hago nada."
+          else
+            python sistema.py "$T"
+          fi
+      - name: Guardar cambios (Vercel publica solo)
+        if: always()
+        run: |
+          git config user.name "jdunabeitia"
+          git config user.email "j.dunabeitia@icloud.com"
+          git add -A data public
+          git diff --staged --quiet || git commit -m "Actualización automática (${{ steps.t.outputs.tarea }})"
+          git pull --rebase && git push
+      - name: Avisar por correo si algo falla
+        if: failure() && env.GMAIL_USER != ''
+        run: python sistema.py aviso_error
