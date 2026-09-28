@@ -1,0 +1,27 @@
+{
+ "next": 2,
+ "items": {
+  "1": {
+   "n": 1,
+   "kind": "prueba",
+   "key": "prueba:2026-09-28T10:00:12.304870",
+   "heading": "PRUEBA: así te llegarán las fichas",
+   "why": "Esto es una <b>prueba</b>. Pulsa el botón de cualquier etiqueta, adjunta un PDF cualquiera y envía. En unos 10 minutos te llegará una confirmación. <b>No se cambiará nada en la web.</b>",
+   "entry": {
+    "topic": "",
+    "type": "Artículo",
+    "year": 2026,
+    "title": "Hearing once, reading twice: How dual subtitles shape visual attention in bilingual viewing",
+    "authors": "Romero-Ortells, I.; Perea, M.; Duñabeitia, J.A.",
+    "journal": "Bilingualism · 2026 · DOI: 10.1017/S1366728926100984",
+    "journal_en": "Bilingualism · 2026 · DOI: 10.1017/S1366728926100984",
+    "doi": "10.1017/S1366728926100984",
+    "pdf": "",
+    "source": ""
+   },
+   "title": "🧪 Hearing once, reading twice: How dual subtitles shape visual attention",
+   "status": "abierta",
+   "created": "2026-09-28"
+  }
+ }
+}
