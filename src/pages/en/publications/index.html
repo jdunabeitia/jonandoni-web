@@ -1,0 +1,97 @@
+<div class="jad-home jad-publications-page">
+<header class="jad-subhero" id="publications">
+<nav class="jad-nav"><div class="jad-container jad-nav-inner">
+<a class="jad-logo" href="/en/"><span aria-hidden="true" class="jad-logo-mark"><svg class="jad-brain-icon" viewbox="0 0 64 64"><path d="M24.5 12.5c-6.3 0-11.4 4.7-11.4 10.6 0 1.1.2 2.2.6 3.2-4.2 1.9-7.1 6.1-7.1 10.9 0 6.6 5.4 12 12 12h1.1c1.6 4.1 5.5 7 10.1 7 3.2 0 6.1-1.4 8.1-3.7 1.9 1.6 4.3 2.6 7 2.6 6 0 10.9-4.9 10.9-10.9 0-1.7-.4-3.3-1.1-4.8 3-2.1 4.9-5.6 4.9-9.5 0-6.4-5.2-11.6-11.6-11.6-.7 0-1.4.1-2.1.2-1.8-4.2-5.9-7.1-10.7-7.1-3.4 0-6.5 1.5-8.6 3.8-1.7-1.7-4.1-2.7-6.1-2.7Z"></path><path d="M22.5 22.5c2.9 0 5.2 2.3 5.2 5.2M38.7 21.1c-3.1.3-5.6 2.9-5.6 6.1M18.7 36.5c3.6 0 6.5 2.9 6.5 6.5M42.4 36.1c-3.9 0-7.1 3.2-7.1 7.1M28.3 30.3h8.6M32.6 30.3v10.8"></path></svg></span><span class="jad-logo-text">Jon Andoni<br/>Duñabeitia</span></a>
+<div class="jad-menu"><a href="/en/">Home</a><a class="jad-active" href="/en/publications/">Publications</a><a href="/en/vitae/">CV</a><a href="/en/contact/">Contact</a><span class="jad-lang"><a href="/publicaciones-cientificas/">ES</a><a class="jad-lang-active" href="/en/publications/">EN</a></span></div><button aria-expanded="false" aria-label="Abrir menú" class="jad-mobile-menu" type="button">
+
+  ☰
+
+</button>
+</div></nav>
+<div class="jad-container jad-subhero-inner"><div class="jad-subhero-copy"><div class="jad-kicker">Scientific output · academic impact · original sources</div><h1>Scientific publications</h1><p>Articles, reviews, chapters and scientific works organised for easy browsing, PDF access and consultation of the original source.</p></div></div>
+</header>
+<main class="jad-main jad-publications-main">
+<section class="jad-container"><div class="jad-pub-toolbar"><input class="jad-pub-search" placeholder="Search by title, author, journal, DOI or topic..." type="search"/><div class="jad-pub-filters"><!--PUBS_FILTERS--></div></div></section>
+<!--CITES_CHART--><section class="jad-container"><!--PUBS_ARCHIVE--></section>
+<section class="jad-container jad-science-links-section"><div class="jad-science-links"><div class="jad-science-links-copy"><div class="jad-small-kicker">Scientific profiles</div><h2>Academic output, citations and researcher identifiers.</h2><p>Consult my updated academic profiles on Google Scholar, Scopus and ORCID.</p></div><div class="jad-science-links-grid"><a class="jad-science-link jad-scholar" href="https://scholar.google.com/citations?user=zOf2BvcAAAAJ&amp;hl" rel="noopener" target="_blank"><span class="jad-profile-logo">G</span><span><strong>Google Scholar</strong><em>Citations and publications</em></span></a><a class="jad-science-link jad-scopus" href="https://www.scopus.com/authid/detail.uri?authorId=16833569000#" rel="noopener" target="_blank"><span class="jad-profile-logo">S</span><span><strong>Scopus</strong><em>Indexed scientific output</em></span></a><a class="jad-science-link jad-orcid" href="https://orcid.org/0000-0002-3312-8559" rel="noopener" target="_blank"><span class="jad-profile-logo">iD</span><span><strong>ORCID</strong><em>Researcher identifier</em></span></a></div></div></section>
+<section class="jad-container jad-banner-section"><div class="jad-image-banner"><img alt="Jon Andoni Duñabeitia - cognitive science, talks and scientific collaboration" decoding="async" src="/wp-content/uploads/2026/05/jon_andoni_banner.png"/></div></section>
+</main>
+<footer class="jad-footer"><div class="jad-container jad-footer-inner"><div><strong>Jon Andoni Duñabeitia</strong><br/>Professor · Cognitive scientist · Speaker · Science communicator</div><div class="jad-footer-links"><a href="/en/">Home</a><a href="/en/vitae/">CV</a><a href="/en/contact/">Contact</a><a href="/publicaciones-cientificas/">ES</a></div></div></footer>
+<script>
+(function(){
+  const root=document.querySelector('.jad-publications-page'); if(!root) return;
+  const search=root.querySelector('.jad-pub-search');
+  const items=[...root.querySelectorAll('.jad-pub-item')];
+  const chips=[...root.querySelectorAll('.jad-filter-chip')];
+  const counter=root.querySelector('.jad-pub-counter');
+  let topic='all';
+  function apply(){
+    const q=(search && search.value || '').trim().toLowerCase();
+    let visible=0;
+    items.forEach(item=>{
+      const okTopic= topic==='all' || item.dataset.topic===topic;
+      const okText= !q || (item.dataset.search||'').includes(q);
+      const show=okTopic && okText;
+      item.style.display=show?'block':'none';
+      if(show) visible++;
+    });
+    if(counter) counter.textContent= visible + ' publications shown';
+  }
+  chips.forEach(ch=>ch.addEventListener('click',()=>{
+    chips.forEach(c=>c.classList.remove('is-active'));
+    ch.classList.add('is-active'); topic=ch.dataset.filterTopic || 'all'; apply();
+  }));
+  if(search) search.addEventListener('input',apply);
+  root.addEventListener('click', function(e){
+    const btn=e.target.closest('.jad-copy-citation'); if(!btn) return;
+    navigator.clipboard.writeText(btn.dataset.citation||'').then(()=>{ const old=btn.textContent; btn.textContent='Copied'; setTimeout(()=>btn.textContent=old,1200); });
+  });
+  apply();
+})();
+</script>
+<script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll(".jad-mobile-menu").forEach(function (button) {
+
+      button.addEventListener("click", function () {
+
+        const navInner = button.closest(".jad-nav-inner");
+
+        const isOpen = navInner.classList.toggle("jad-menu-open");
+
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+        button.textContent = isOpen ? "×" : "☰";
+
+      });
+
+    });
+
+    document.querySelectorAll(".jad-menu a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        const navInner = link.closest(".jad-nav-inner");
+
+        const button = navInner ? navInner.querySelector(".jad-mobile-menu") : null;
+
+        if (navInner && button) {
+
+          navInner.classList.remove("jad-menu-open");
+
+          button.setAttribute("aria-expanded", "false");
+
+          button.textContent = "☰";
+
+        }
+
+      });
+
+    });
+
+  });
+
+</script>
+</div>

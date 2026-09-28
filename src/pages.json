@@ -1,0 +1,50 @@
+{
+ "index.html": {
+  "lang": "es",
+  "title": "Jon Andoni Duñabeitia · Catedrático, científico cognitivo y conferenciante",
+  "description": "Catedrático y científico cognitivo. Conferencias, colaboración científica e I+D en cognición, lenguaje, aprendizaje y salud cognitiva.",
+  "alternate": "en/index.html"
+ },
+ "en/index.html": {
+  "lang": "en",
+  "title": "Jon Andoni Duñabeitia · Professor, cognitive scientist and speaker",
+  "description": "Professor and cognitive scientist. Talks, scientific collaboration and R&D in cognition, language, learning and cognitive health.",
+  "alternate": "index.html"
+ },
+ "publicaciones-cientificas/index.html": {
+  "lang": "es",
+  "title": "Publicaciones científicas · Jon Andoni Duñabeitia",
+  "description": "Artículos, revisiones y capítulos de Jon Andoni Duñabeitia, con acceso al PDF, DOI y cita APA.",
+  "alternate": "en/publications/index.html"
+ },
+ "en/publications/index.html": {
+  "lang": "en",
+  "title": "Scientific publications · Jon Andoni Duñabeitia",
+  "description": "Articles, reviews and chapters by Jon Andoni Duñabeitia, with PDF, DOI and APA citation.",
+  "alternate": "publicaciones-cientificas/index.html"
+ },
+ "cv/index.html": {
+  "lang": "es",
+  "title": "CV · Jon Andoni Duñabeitia",
+  "description": "Trayectoria académica, proyectos, docencia y reconocimientos de Jon Andoni Duñabeitia.",
+  "alternate": "en/vitae/index.html"
+ },
+ "en/vitae/index.html": {
+  "lang": "en",
+  "title": "CV · Jon Andoni Duñabeitia",
+  "description": "Academic career, projects, teaching and awards of Jon Andoni Duñabeitia.",
+  "alternate": "cv/index.html"
+ },
+ "contacto/index.html": {
+  "lang": "es",
+  "title": "Contacto · Jon Andoni Duñabeitia",
+  "description": "Conferencias, colaboración científica, consultoría e I+D. Escríbeme.",
+  "alternate": "en/contact/index.html"
+ },
+ "en/contact/index.html": {
+  "lang": "en",
+  "title": "Contact · Jon Andoni Duñabeitia",
+  "description": "Talks, scientific collaboration, consulting and R&D. Get in touch.",
+  "alternate": "contacto/index.html"
+ }
+}

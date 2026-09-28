@@ -1,0 +1,29 @@
+{
+ "topics": {
+  "all": "All",
+  "Multilingüismo": "Multilingualism",
+  "Lectura y aprendizaje": "Reading and learning",
+  "Otros": "Other",
+  "Neurociencia cognitiva": "Cognitive neuroscience",
+  "Salud cognitiva": "Cognitive health",
+  "Neurodesarrollo": "Neurodevelopment",
+  "Metodología / evaluación": "Methods / assessment",
+  "Educación": "Education"
+ },
+ "types": {
+  "Artículo": "Article",
+  "Capítulo / libro": "Book chapter",
+  "Review": "Review",
+  "Conferencia": "Conference"
+ },
+ "topics_order": [
+  "Multilingüismo",
+  "Lectura y aprendizaje",
+  "Otros",
+  "Neurociencia cognitiva",
+  "Salud cognitiva",
+  "Neurodesarrollo",
+  "Metodología / evaluación",
+  "Educación"
+ ]
+}
