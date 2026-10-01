@@ -1,5 +1,5 @@
 {
- "next": 2,
+ "next": 13,
  "items": {
   "1": {
    "n": 1,
@@ -23,6 +23,247 @@
    "status": "publicada",
    "created": "2026-09-28",
    "closed": "2026-09-28"
+  },
+  "2": {
+   "n": 2,
+   "kind": "nueva",
+   "key": "nueva:10.31234/osf.io/mdf95_v1",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2026,
+    "topic": "",
+    "type": "Artículo",
+    "title": "Too wide or too narrow? Evaluating accessibility recommendations for inter-letter and inter-word spacing on digital reading performance and user experience",
+    "authors": "Navas-León, S.; Duñabeitia, J. A.",
+    "journal": "2026 · DOI: 10.31234/osf.io/mdf95_v1",
+    "journal_en": "2026 · DOI: 10.31234/osf.io/mdf95_v1",
+    "doi": "10.31234/osf.io/mdf95_v1",
+    "pdf": "",
+    "source": "https://doi.org/10.31234/osf.io/mdf95_v1",
+    "citation": "Navas-León, S., Duñabeitia, J. A. (2026). Too wide or too narrow? Evaluating accessibility recommendations for inter-letter and inter-word spacing on digital reading performance and user experience. . https://doi.org/10.31234/osf.io/mdf95_v1"
+   },
+   "title": "🆕 Too wide or too narrow? Evaluating accessibility recommendations for i",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "3": {
+   "n": 3,
+   "kind": "nueva",
+   "key": "nueva:10.31234/osf.io/s8yvt_v2",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "Validating an Acute Stress Induction Method in Adult Spanish-Speaking Populations",
+    "authors": "Navas-León, S.; Duñabeitia, J. A.",
+    "journal": "2025 · DOI: 10.31234/osf.io/s8yvt_v2",
+    "journal_en": "2025 · DOI: 10.31234/osf.io/s8yvt_v2",
+    "doi": "10.31234/osf.io/s8yvt_v2",
+    "pdf": "",
+    "source": "https://doi.org/10.31234/osf.io/s8yvt_v2",
+    "citation": "Navas-León, S., Duñabeitia, J. A. (2025). Validating an Acute Stress Induction Method in Adult Spanish-Speaking Populations. . https://doi.org/10.31234/osf.io/s8yvt_v2"
+   },
+   "title": "🆕 Validating an Acute Stress Induction Method in Adult Spanish-Speaking ",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "4": {
+   "n": 4,
+   "kind": "nueva",
+   "key": "nueva:10.31234/osf.io/s8yvt_v1",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "Validating an Acute Stress Induction Method in Adult Spanish-Speaking Populations",
+    "authors": "Navas-León, S.; Duñabeitia, J. A.",
+    "journal": "2025 · DOI: 10.31234/osf.io/s8yvt_v1",
+    "journal_en": "2025 · DOI: 10.31234/osf.io/s8yvt_v1",
+    "doi": "10.31234/osf.io/s8yvt_v1",
+    "pdf": "",
+    "source": "https://doi.org/10.31234/osf.io/s8yvt_v1",
+    "citation": "Navas-León, S., Duñabeitia, J. A. (2025). Validating an Acute Stress Induction Method in Adult Spanish-Speaking Populations. . https://doi.org/10.31234/osf.io/s8yvt_v1"
+   },
+   "title": "🆕 Validating an Acute Stress Induction Method in Adult Spanish-Speaking ",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "5": {
+   "n": 5,
+   "kind": "nueva",
+   "key": "nueva:10.51660/ahd12434",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "Discurso de ingreso AN32",
+    "authors": "Duñabeitia Landaburu, J. A.",
+    "journal": "Anales de la Academia Hispanoamericana de Doctores · 2025 · 1(2) · DOI: 10.51660/ahd12434",
+    "journal_en": "Anales de la Academia Hispanoamericana de Doctores · 2025 · 1(2) · DOI: 10.51660/ahd12434",
+    "doi": "10.51660/ahd12434",
+    "pdf": "",
+    "source": "https://doi.org/10.51660/ahd12434",
+    "citation": "Duñabeitia Landaburu, J. A. (2025). Discurso de ingreso AN32. Anales de la Academia Hispanoamericana de Doctores, 1(2). https://doi.org/10.51660/ahd12434"
+   },
+   "title": "🆕 Discurso de ingreso AN32",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "6": {
+   "n": 6,
+   "kind": "nueva",
+   "key": "nueva:10.14195/1647-8606_68_7",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "Assessing the Stability of Cognitive and Attentional Computerized Tests",
+    "authors": "Lira Delcore, A.; Tapia, J. L.; Duñabeitia, J. A.",
+    "journal": "Psychologica · 2025 · 68, e068007 · DOI: 10.14195/1647-8606_68_7",
+    "journal_en": "Psychologica · 2025 · 68, e068007 · DOI: 10.14195/1647-8606_68_7",
+    "doi": "10.14195/1647-8606_68_7",
+    "pdf": "",
+    "source": "https://doi.org/10.14195/1647-8606_68_7",
+    "citation": "Lira Delcore, A., Tapia, J. L., Duñabeitia, J. A. (2025). Assessing the Stability of Cognitive and Attentional Computerized Tests. Psychologica, 68, e068007. https://doi.org/10.14195/1647-8606_68_7"
+   },
+   "title": "🆕 Assessing the Stability of Cognitive and Attentional Computerized Test",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "7": {
+   "n": 7,
+   "kind": "nueva",
+   "key": "nueva:10.3390/ijcs1010001",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "International Journal of Cognitive Sciences: Bridging Disciplines, Cultures, and Methods in the Pursuit of Knowledge",
+    "authors": "Duñabeitia, J. A.",
+    "journal": "International Journal of Cognitive Sciences · 2025 · 1(1), 1 · DOI: 10.3390/ijcs1010001",
+    "journal_en": "International Journal of Cognitive Sciences · 2025 · 1(1), 1 · DOI: 10.3390/ijcs1010001",
+    "doi": "10.3390/ijcs1010001",
+    "pdf": "",
+    "source": "https://doi.org/10.3390/ijcs1010001",
+    "citation": "Duñabeitia, J. A. (2025). International Journal of Cognitive Sciences: Bridging Disciplines, Cultures, and Methods in the Pursuit of Knowledge. International Journal of Cognitive Sciences, 1(1), 1. https://doi.org/10.3390/ijcs1010001"
+   },
+   "title": "🆕 International Journal of Cognitive Sciences: Bridging Disciplines, Cul",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "8": {
+   "n": 8,
+   "kind": "nueva",
+   "key": "nueva:10.31234/osf.io/9uqbm_v3",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "A multi-metric analysis of 50,000 linguistic profiles provides sparse evidence that language distance modulates bilingual cognition",
+    "authors": "Leivada, E.; Guenther, F.; Masullo, C.; Duñabeitia, J. A.; Westergaard, M.; Rothman, J.",
+    "journal": "2025 · DOI: 10.31234/osf.io/9uqbm_v3",
+    "journal_en": "2025 · DOI: 10.31234/osf.io/9uqbm_v3",
+    "doi": "10.31234/osf.io/9uqbm_v3",
+    "pdf": "",
+    "source": "https://doi.org/10.31234/osf.io/9uqbm_v3",
+    "citation": "Leivada, E., Guenther, F., Masullo, C., Duñabeitia, J. A., Westergaard, M., Rothman, J. (2025). A multi-metric analysis of 50,000 linguistic profiles provides sparse evidence that language distance modulates bilingual cognition. . https://doi.org/10.31234/osf.io/9uqbm_v3"
+   },
+   "title": "🆕 A multi-metric analysis of 50,000 linguistic profiles provides sparse ",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "9": {
+   "n": 9,
+   "kind": "nueva",
+   "key": "nueva:10.30827/eticanet.v25i1.33131",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "ILUSIONISMO COMO RECURSO PEDAGÓGICO",
+    "authors": "De Lucas, M.; De Diego González, Á.; Caballero Juliá, D.; Duñabeitia Landaburu, J. A.",
+    "journal": "Etic@net. Revista científica electrónica de Educación y Comunicación en la Sociedad del Conocimiento · 2025 · 25(1), 241-254 · DOI: 10.30827/eticanet.v25i1.33131",
+    "journal_en": "Etic@net. Revista científica electrónica de Educación y Comunicación en la Sociedad del Conocimiento · 2025 · 25(1), 241-254 · DOI: 10.30827/eticanet.v25i1.33131",
+    "doi": "10.30827/eticanet.v25i1.33131",
+    "pdf": "",
+    "source": "https://doi.org/10.30827/eticanet.v25i1.33131",
+    "citation": "De Lucas, M., De Diego González, Á., Caballero Juliá, D., Duñabeitia Landaburu, J. A. (2025). ILUSIONISMO COMO RECURSO PEDAGÓGICO. Etic@net. Revista científica electrónica de Educación y Comunicación en la Sociedad del Conocimiento, 25(1), 241-254. https://doi.org/10.30827/eticanet.v25i1.33131"
+   },
+   "title": "🆕 ILUSIONISMO COMO RECURSO PEDAGÓGICO",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "10": {
+   "n": 10,
+   "kind": "nueva",
+   "key": "nueva:10.31234/osf.io/9uqbm_v2",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2025,
+    "topic": "",
+    "type": "Artículo",
+    "title": "A multi-metric analysis of 50,000 linguistic profiles provides sparse evidence that language distance modulates bilingual cognition",
+    "authors": "Leivada, E.; Guenther, F.; Masullo, C.; Morosi, P.; Westergaard, M.",
+    "journal": "2025 · DOI: 10.31234/osf.io/9uqbm_v2",
+    "journal_en": "2025 · DOI: 10.31234/osf.io/9uqbm_v2",
+    "doi": "10.31234/osf.io/9uqbm_v2",
+    "pdf": "",
+    "source": "https://doi.org/10.31234/osf.io/9uqbm_v2",
+    "citation": "Leivada, E., Guenther, F., Masullo, C., Morosi, P., Westergaard, M. (2025). A multi-metric analysis of 50,000 linguistic profiles provides sparse evidence that language distance modulates bilingual cognition. . https://doi.org/10.31234/osf.io/9uqbm_v2"
+   },
+   "title": "🆕 A multi-metric analysis of 50,000 linguistic profiles provides sparse ",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "11": {
+   "n": 11,
+   "kind": "nueva",
+   "key": "nueva:10.20944/preprints202609.0247.v1",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2026,
+    "topic": "",
+    "type": "Artículo",
+    "title": "MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research",
+    "authors": "De Lucas, M.; Duñabeitia, J. A.",
+    "journal": "2026 · DOI: 10.20944/preprints202609.0247.v1",
+    "journal_en": "2026 · DOI: 10.20944/preprints202609.0247.v1",
+    "doi": "10.20944/preprints202609.0247.v1",
+    "pdf": "",
+    "source": "https://doi.org/10.20944/preprints202609.0247.v1",
+    "citation": "De Lucas, M., Duñabeitia, J. A. (2026). MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research. . https://doi.org/10.20944/preprints202609.0247.v1"
+   },
+   "title": "🆕 MAGICONTROL: A Normed Video Database of Magic Effects and Matched Cont",
+   "status": "abierta",
+   "created": "2026-10-01"
+  },
+  "12": {
+   "n": 12,
+   "kind": "info",
+   "key": "orcid-antiguas",
+   "heading": "18 trabajos antiguos de ORCID no están en tu web",
+   "why": "No los he convertido en fichas para no llenarte de avisos. Si quieres alguno, dímelo.<br><br>· A multi-metric analysis of 50,000 linguistic profiles provides sparse evidence that language distance modulates bilingual cognition (2024) 10.31234/osf.io/9uqbm<br>· Rata de dos patas: análisis de insultos en el español de España en el siglo XXI (2024) 10.14198/dissoc.18.1.5<br>· Degree of Bilingual Engagement Modulates Resting State Oscillatory Activity Across the Lifespan (2024) 10.2139/ssrn.4694177<br>· Two-legged rat: An analysis of insults in Spanish of Spain in the XXI century,Rata de dos patas: análisis de insultos en el español de España en el siglo XXI (2024) <br>· Análisis de la discriminación por perfilado lingüístico durante la atención telefónica para acceder a la vivienda de alquiler en España (2023) 10.15366/bibliotecababel2023.4.006<br>· Your language drives me nuts! Fostering Acceptance of Autonomous Vehicles (2023) 10.21203/rs.3.rs-3404499/v1<br>· The impact of a home-based personalized computerized training program on cognitive dysfunction associated with Long COVID: a before-and-after feasibility study (2022) 10.1101/2022.09.28.22280467<br>· TouchScope: A passive-haptic reading device to investigate tactile perception (2021) 10.31234/osf.io/a7snq<br>· Differences in word learning: bilingualism or linguistic experience? (2019) 10.1101/551408<br>· Neuroanatomical Correlates in Bilinguals: The Case of Children and Elderly (2019) 10.1101/586768<br>· The impact of bilingualism on executive functions and working memory in young adults. Short title: Executive functions in young bilinguals (2018) 10.1101/449827<br>· Elebitasuna, bi hizkuntza hitz egitea baino gehiago (2016) 10.54512/YLTY5400<br>· ARE THERE DIFFERENT BRAIN MECHANISMS FOR LETTER, SYMBOL AND DIGIT POSITION CODING? FMRI EVIDENCE FOR ORTHOGRAPHIC SPECIFICITY (2013) <br>· LANGUAGE SWITCHING IN MULTILINGUAL READING: IT'S ALL ABOUT BIGRAMS! (2013) <br>· On coding non-contiguous letter combinations. (2011) 10.3389/fpsyg.2011.00136<br>· Associative and semantic priming: Different findings for abstract and concrete words (2008) <br>· Associative and semantic priming: Different findings for abstract and concrete words (2008) <br>· Morphological priming involves more than orthographic priming,Priming morfológico: Algo más que priming ortográfico (2007) ",
+   "entry": {},
+   "title": "ℹ️ Trabajos antiguos de ORCID",
+   "status": "abierta",
+   "created": "2026-10-01"
   }
  }
 }
