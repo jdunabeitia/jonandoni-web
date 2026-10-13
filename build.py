@@ -13,7 +13,13 @@ P = lambda *a: os.path.join(ROOT, *a)
 SITE = "https://jonandoni.com"
 
 def load(p):
-    return json.load(open(P(p), encoding="utf-8"))
+    d = json.load(open(P(p), encoding="utf-8"))
+    if p.endswith("publications.json"):   # quita restos de códigos HTML (p. ej. &#x27;)
+        for e in d:
+            for k, v in e.items():
+                if isinstance(v, str):
+                    e[k] = html.unescape(v)
+    return d
 
 def esc(s):
     return html.escape(str(s or ""), quote=True)

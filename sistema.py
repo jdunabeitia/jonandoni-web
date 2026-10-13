@@ -75,32 +75,64 @@ def crossref(doi):
 def initials(given):
     return " ".join(p[0].upper() + "." for p in re.split(r"[\s\-]+", given or "") if p)
 
+def apa_authors(a):
+    """'Duñabeitia, J.A.; Pérez, M.' -> 'Duñabeitia, J. A., & Pérez, M.' (formato APA 7)"""
+    parts = [p.strip() for p in (a or "").split(";") if p.strip()]
+    etal = parts and parts[-1].lower().startswith("et al")
+    if etal:
+        parts = parts[:-1]
+    parts = [re.sub(r"\.(?=[A-ZÁÉÍÓÚÑ])", ". ", p) for p in parts]
+    if etal:
+        return ", ".join(parts) + ", et al."
+    return parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + ", & " + parts[-1] if parts else ""
+
 def apa(e):
-    au = e["authors"].replace("; ", ", ")
-    seg = [x for x in e["journal"].split(" · ") if not x.startswith("DOI") and not re.fullmatch(r"\d{4}", x)]
+    """Cita APA 7 a partir de los datos de la ficha (artículos y capítulos)."""
+    au = apa_authors(e["authors"])
+    year = "en prensa" if "prensa" in e["journal"].lower() else e["year"]
+    seg = [x for x in e["journal"].split(" · ") if not x.startswith("DOI") and not re.fullmatch(r"\d{4}", x) and "prensa" not in x.lower()]
+    doi = f" https://doi.org/{e['doi']}" if e.get("doi") else ""
+    m = re.match(r"^In:\s*(.+?)\s*\(Eds?\.\),\s*(.+)$", seg[0]) if seg else None
+    if m:   # capítulo de libro
+        eds = [x.strip() for x in re.split(r",\s*(?=[^,]+,\s*[A-ZÁÉÍÓÚÑ]\.)", m.group(1)) if x.strip()]
+        eds = [" ".join(reversed([y.strip() for y in x.split(",", 1)])) if "," in x else x for x in eds]
+        eds = [re.sub(r"\.(?=[A-ZÁÉÍÓÚÑ])", ". ", x) for x in eds]
+        eds_s = eds[0] if len(eds) == 1 else (" & ".join(eds) if len(eds) == 2 else ", ".join(eds[:-1]) + ", & " + eds[-1])
+        pages = next((x for x in seg[1:] if re.search(r"\d", x)), "")
+        pub = f" {e['publisher']}." if e.get("publisher") else ""
+        return (f"{au} ({year}). {e['title']}. In {eds_s} ({'Eds.' if len(eds) > 1 else 'Ed.'}), {m.group(2)}"
+                + (f" (pp. {pages})" if pages else "") + "." + pub + doi)
     j = seg[0] if seg else ""
-    rest = ", ".join(x for x in seg[1:] if "prensa" not in x.lower())
-    s = f"{au} ({e['year']}). {e['title']}. {j}" + (f", {rest}" if rest else "")
-    return s + (f". https://doi.org/{e['doi']}" if e.get("doi") else ".")
+    rest = ", ".join(seg[1:])
+    return f"{au} ({year}). {e['title']}. {j}" + (f", {rest}" if rest else "") + "." + doi
 
 def from_crossref(m):
-    au = [f"{a.get('family', '')}, {initials(a.get('given', ''))}".strip(", ") for a in m.get("author", [])]
+    au = [f"{a.get('family', '')}, {initials(a.get('given', '')).replace(' ', '')}".strip(", ") for a in m.get("author", [])]
     authors = "; ".join(au[:10]) + ("; et al." if len(au) > 10 else "")
     title = ws(re.sub(r"<[^>]+>", "", (m.get("title") or [""])[0]))
-    journal = (m.get("container-title") or [""])[0]
+    t = m.get("type", "")
+    ct = m.get("container-title") or [""]
+    journal = max(ct, key=len) if t.startswith("book") else ct[0]   # en capítulos: el título del libro, no la colección
     dp = (m.get("issued") or m.get("published") or {}).get("date-parts", [[TODAY.year]])
     year = dp[0][0] or TODAY.year
     vol, iss = m.get("volume", ""), m.get("issue", "")
     vi = f"{vol}({iss})" if vol and iss else vol
     pages = m.get("page") or m.get("article-number") or ""
     doi = normdoi(m.get("DOI", ""))
+    pages = pages.replace("-", "–")
+    if t.startswith("book") and m.get("editor"):
+        eds = ", ".join(f"{x.get('family', '')}, {initials(x.get('given', '')).replace(' ', '')}" for x in m["editor"])
+        journal = f"In: {eds} (Eds.), {journal}"
+        vi = ""
     line = " · ".join(x for x in [journal, str(year), ", ".join(x for x in [vi, pages] if x), f"DOI: {doi}" if doi else ""] if x)
-    t = m.get("type", "")
     typ = "Capítulo / libro" if t.startswith("book") else ("Conferencia" if "proceedings" in t else "Artículo")
     if re.search(r"\breview\b", title, re.I) and typ == "Artículo":
         typ = "Review"
     e = {"year": year, "topic": "", "type": typ, "title": title, "authors": authors, "journal": line,
          "journal_en": line, "doi": doi, "pdf": "", "source": f"https://doi.org/{doi}" if doi else ""}
+    pub = m.get("publisher", "")
+    if t.startswith("book") and pub:
+        e["publisher"] = "Springer" if pub.lower().startswith("springer") else pub
     e["citation"] = apa(e)
     return e
 
@@ -204,7 +236,9 @@ def btn(label, subject, body, color="#0f6fa8"):
 def ficha_rows(e):
     rows = [("Etiqueta", e.get("topic") or "— (elígela abajo)"), ("Tipo", e.get("type")), ("Año", e.get("year")),
             ("Título", e.get("title")), ("Autores", e.get("authors")), ("Revista", e.get("journal")),
-            ("DOI", e.get("doi")), ("Fuente", e.get("source")), ("PDF", e.get("pdf") or "— (adjúntalo al responder)")]
+            ("DOI", e.get("doi")), ("Fuente", e.get("source")),
+            ("PDF", "recibido ✓ (" + e["pdf_nombre"] + ")" if e.get("pdf_pendiente") else (e.get("pdf") or "— (adjúntalo al responder)")),
+            ("Cita APA", e.get("citation"))]
     return "".join(f'<tr><td style="padding:4px 10px 4px 0;color:#5c6b7d;vertical-align:top;white-space:nowrap">{k}</td>'
                    f'<td style="padding:4px 0">{esc(v)}</td></tr>' for k, v in rows)
 
@@ -212,7 +246,8 @@ def edit_body(e):
     return ("publicar\n\n"
             f"etiqueta: {e.get('topic', '')}\ntipo: {e.get('type', '')}\naño: {e.get('year', '')}\n"
             f"título: {e.get('title', '')}\nautores: {e.get('authors', '')}\nrevista: {e.get('journal', '')}\n"
-            f"revista_en: {e.get('journal_en', '')}\ndoi: {e.get('doi', '')}\nfuente: {e.get('source', '')}\n\n"
+            f"revista_en: {e.get('journal_en', '')}\ndoi: {e.get('doi', '')}\nfuente: {e.get('source', '')}\n"
+            f"cita: {e.get('citation', '')}\n\n"
             "(Corrige las líneas que haga falta y, si tienes el PDF, adjúntalo antes de enviar)\n")
 
 def mail_ficha(f):
@@ -274,13 +309,15 @@ def confirm(f, ok, detail):
 
 # ---------------------------------------------------------------- leer tus respuestas
 FIELDS = {"etiqueta": "topic", "tipo": "type", "ano": "year", "titulo": "title", "autores": "authors",
-          "revista": "journal", "revista en": "journal_en", "doi": "doi", "fuente": "source"}
+          "revista": "journal", "revista en": "journal_en", "doi": "doi", "fuente": "source", "cita": "citation"}
 CUT = re.compile(r"^\s*(>|✂|-{2,}\s*(Original|Mensaje original)|_{5,}|(On|El) .{5,200}(wrote|escribió)\s*:|(From|De|Enviado el|Sent):\s)", re.I)
 
 def parse_fields(text):
     out = {}
     for line in (text or "").splitlines():
         m = re.match(r"^\s*([^:\n]{2,20}):\s?(.*)$", line)
+        if m and norm(m.group(1)) == "cita apa":
+            out["citation"] = ws(m.group(2)); continue
         if m and norm(m.group(1)) in FIELDS:
             out[FIELDS[norm(m.group(1))]] = ws(m.group(2))
     return out
@@ -342,9 +379,12 @@ def cmd_buzon():
     im = imaplib.IMAP4_SSL("imap.gmail.com")
     im.login(gmail_user(), os.environ["GMAIL_APP_PASSWORD"].replace(" ", ""))
     im.select(all_mail(im), readonly=True)
-    typ, data = im.search(None, "X-GM-RAW", '"subject:(jonandoni-web Ficha) newer_than:30d"')
+    ids = []
+    for q in ('"subject:(jonandoni-web Ficha) newer_than:30d"', f'"to:({buzon()}) newer_than:30d"'):
+        typ, data = im.search(None, "X-GM-RAW", q)
+        ids += [i for i in (data[0].split() if data and data[0] else []) if i not in ids]
     allowed = [a.lower() for a in CFG.get("remitentes_permitidos", []) if a] + [gmail_user().lower()]
-    for i in (data[0].split() if data and data[0] else []):
+    for i in ids:
         msg = email.message_from_bytes(im.fetch(i, "(RFC822)")[1][0][1])
         mid = msg.get("Message-ID", "") or f"id-{i.decode()}"
         if mid in proc or msg.get(HDR):
@@ -356,6 +396,8 @@ def cmd_buzon():
 def handle_reply(subject, sender, text, pdfs, allowed):
     m = re.search(r"Ficha (\d+) · ([0-9a-f]{8})", subject)
     if not m:
+        if re.search(r"\bnueva publicacion\b", norm(subject)) and not norm(subject).startswith(("re ", "fw", "rv")):
+            nueva_manual(sender, own_part(text), pdfs, allowed)
         return
     n = int(m.group(1))
     if not hmac.compare_digest(m.group(2), token(n)):
@@ -388,6 +430,51 @@ def handle_reply(subject, sender, text, pdfs, allowed):
         confirm(f, False, "Ha habido un error al procesar tu respuesta. No se ha publicado nada.\n" + traceback.format_exc()[-1200:])
         raise
 
+def nueva_manual(sender, text, pdfs, allowed):
+    """Correo tuyo con asunto 'Nueva publicación' + DOI (+ PDF) -> ficha para revisar."""
+    if sender not in allowed:
+        log("Alta manual ignorada: remitente no autorizado", sender); return
+    entries, fields = load(PUBS, []), parse_fields(text)
+    m = re.search(r"10\.\d{4,9}/[^\s<>\"']+", text)
+    doi = normdoi(m.group(0).rstrip(".,;)")) if m else normdoi(fields.get("doi", ""))
+    e = None
+    if doi:
+        if any(normdoi(x.get("doi", "")).lower() == doi.lower() for x in entries):
+            return send("[jonandoni-web] ⚠️ Esa publicación ya está en tu web",
+                        f"<p>El DOI <b>{esc(doi)}</b> ya está en tu web. No he hecho nada.</p>", f"El DOI {doi} ya está en tu web.")
+        cr = crossref(doi)
+        if cr:
+            e = from_crossref(cr)
+    if e is None:
+        if not fields.get("title"):
+            return send("[jonandoni-web] ⚠️ No he podido leer tu nueva publicación",
+                        "<p>No he encontrado un DOI válido. Escríbelo en el correo (por ejemplo <code>10.1007/978-3-032-18746-8_26</code>) "
+                        "o, si no tiene DOI, indica al menos estas líneas:</p><pre>título: …\nautores: Apellido, I.; Apellido, I.\nrevista: …\naño: 2026</pre>",
+                        "No he encontrado un DOI válido. Escríbelo en el correo o indica título, autores, revista y año.")
+        e = {"year": TODAY.year, "topic": "", "type": "Artículo", "title": "", "authors": "", "journal": "",
+             "journal_en": "", "doi": doi, "pdf": "", "source": f"https://doi.org/{doi}" if doi else "", "citation": ""}
+    e.update({k: v for k, v in fields.items() if v})
+    if fields.get("topic"):
+        e["topic"] = match_topic(fields["topic"]) or ""
+    e["journal_en"] = e.get("journal_en") or e["journal"]
+    if not fields.get("citation") and (fields or not e.get("citation")):
+        e["citation"] = apa(e)
+    path = None
+    if pdfs:
+        os.makedirs("data/pdf_pendientes", exist_ok=True)
+        path = f"data/pdf_pendientes/{slug(doi or e['title'])[:60]}.pdf"
+        open(path, "wb").write(pdfs[-1][1])
+        e.update(pdf_pendiente=path, pdf_nombre=pdfs[-1][0])
+    f = new_ficha("nueva", f"nueva:{(doi or slug(e['title'])[:60]).lower()}", "Nueva publicación (enviada por ti)",
+                  "Revisa los datos y la cita APA. Si todo está bien, elige la etiqueta para publicarla."
+                  + (" El PDF que adjuntaste ya está guardado: no hace falta volver a enviarlo." if pdfs else ""), e)
+    if f is None:
+        if path:
+            os.remove(path)
+        send("[jonandoni-web] ⚠️ Ya tienes una ficha abierta para esa publicación",
+             "<p>Ya te envié una ficha para esa publicación y está pendiente de tu respuesta. Búscala en tu correo.</p>",
+             "Ya tienes una ficha abierta para esa publicación.")
+
 def apply_ficha(f, fields, raw, pdfs):
     entries = load(PUBS, [])
     e = dict(f["entry"]); e.update({k: v for k, v in fields.items() if v})
@@ -410,6 +497,11 @@ def apply_ficha(f, fields, raw, pdfs):
         return True, (f"¡La prueba ha funcionado! Tu respuesta ha llegado y el sistema la ha entendido.\n"
                       f"Etiqueta elegida: {topic}\n{pdf}\n(Es una prueba: no se ha cambiado nada en la web.)")
     note = ""
+    pend = e.pop("pdf_pendiente", None); e.pop("pdf_nombre", None)
+    if not pdfs and pend and os.path.exists(pend):
+        pdfs = [("guardado.pdf", open(pend, "rb").read())]
+    if pend and os.path.exists(pend):
+        os.remove(pend)
     if pdfs:
         fam = slug(e["authors"].split(",")[0]) or "articulo"
         words = [w for w in slug(e["title"]).split("-") if len(w) > 3][:6]
@@ -420,9 +512,14 @@ def apply_ficha(f, fields, raw, pdfs):
         note = "PDF guardado y vinculado."
     elif not e.get("pdf"):
         note = "Sin PDF: aparece como «PDF pendiente»."
-    e["citation"] = apa(e) if fields or f["kind"] == "nueva" or not e.get("citation") else e["citation"]
-    if fields:
+    changed = {k for k, v in fields.items() if v and k not in ("topic", "citation") and v != str(f["entry"].get(k, ""))}
+    if fields.get("citation") and fields["citation"] != f["entry"].get("citation"):
+        e["citation"] = fields["citation"]   # la has corregido tú
+    elif changed or not e.get("citation"):
+        e["citation"] = apa(e)
+    if changed or fields.get("citation"):
         e.pop("citation_en", None)
+    e.pop("publisher", None)
     e.pop("search", None)
     if f["kind"] == "nueva":
         pos = next((i for i, x in enumerate(entries) if x["year"] <= e["year"]), len(entries))
@@ -455,10 +552,18 @@ def cmd_quincenal():
     except Exception as ex:
         works = []
         lines.append(f"⚠️ No he podido leer ORCID esta vez ({ex}). Lo reintentaré en la próxima revisión.")
+    seen_titles = [x["entry"].get("title", "") for x in load(FICHAS, {"items": {}})["items"].values() if x["status"] == "abierta"]
     for w in works:
-        if (w["doi"] and w["doi"].lower() in dois) or any(norm(w["title"]) == norm(e["title"]) for e in entries):
+        if w["doi"] and w["doi"].lower() in dois:
             continue
-        prensa = next((e for e in entries if (not e.get("doi") or "prensa" in e["journal"].lower()) and similar(e["title"], w["title"]) > .9), None)
+        match = next((e for e in entries if similar(e["title"], w["title"]) > .9), None)
+        enprensa = match and (not match.get("doi") or "prensa" in match["journal"].lower())
+        if match and not (enprensa and w["doi"]):
+            continue   # ya está en la web
+        if any(similar(w["title"], t) > .9 for t in seen_titles if t):
+            continue   # duplicado en ORCID o ya tiene ficha abierta
+        seen_titles.append(w["title"])
+        prensa = match if enprensa else None
         k = f"corr:{entry_key(prensa)}:publicado" if prensa else f"nueva:{(w['doi'] or slug(w['title'])[:60]).lower()}"
         if k in keys or k in ign:
             continue
@@ -497,6 +602,8 @@ def cmd_quincenal():
     html = ('<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;max-width:640px">'
             '<h2 style="font-size:19px;font-family:Georgia,serif;color:#061a33">Revisión quincenal de tu web</h2>' +
             "".join(f"<p style='margin:4px 0'>{esc(l)}</p>" for l in lines) +
+            "<p style='margin:16px 0 4px'>" + btn("➕ Añadir una publicación", "Nueva publicación",
+                "DOI: \n\n(Escribe el DOI, adjunta el PDF si lo tienes y envía. Opcional: etiqueta: …)\n") + "</p>"
             "<p style='font-size:13px;color:#5c6b7d;margin-top:14px'>Este resumen te llega siempre, haya novedades o no: si un día 1 o 15 no lo recibes, algo falla.</p></div>")
     send(f"[jonandoni-web] Revisión quincenal {TODAY:%d/%m/%Y}", html, "\n".join(lines))
 

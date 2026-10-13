@@ -1,6 +1,19 @@
 [
  {
   "year": 2026,
+  "topic": "Salud cognitiva",
+  "type": "Capítulo / libro",
+  "title": "Computerized Cognitive Assessment and Training Across the Lifespan: Evidence from CogniFit",
+  "authors": "Duñabeitia, J.A.; Sánchez-Vincitore, L.V.",
+  "journal": "In: Tornero, J., Torricelli, D., Lunardini, F. (Eds.), Advances in Applied Technologies for Disability and Inclusion · 2026 · 185–192 · DOI: 10.1007/978-3-032-18746-8_26",
+  "doi": "10.1007/978-3-032-18746-8_26",
+  "pdf": "/wp-content/uploads/2026/10/dunabeitia-2026-computerized-cognitive-assessment-training-across-lifespan.pdf",
+  "source": "https://doi.org/10.1007/978-3-032-18746-8_26",
+  "citation": "Duñabeitia, J. A., & Sánchez-Vincitore, L. V. (2026). Computerized cognitive assessment and training across the lifespan: Evidence from CogniFit. In J. Tornero, D. Torricelli, & F. Lunardini (Eds.), Advances in applied technologies for disability and inclusion (pp. 185–192). Springer. https://doi.org/10.1007/978-3-032-18746-8_26",
+  "journal_en": "In: Tornero, J., Torricelli, D., Lunardini, F. (Eds.), Advances in Applied Technologies for Disability and Inclusion · 2026 · 185–192 · DOI: 10.1007/978-3-032-18746-8_26"
+ },
+ {
+  "year": 2026,
   "topic": "Otros",
   "type": "Artículo",
   "title": "Being near home enhances strategic risk-taking in immersive environments",
