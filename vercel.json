@@ -5,14 +5,60 @@
   "outputDirectory": "public",
   "trailingSlash": true,
   "redirects": [
-    { "source": "/en/cv/", "destination": "/en/vitae/", "permanent": true },
-    { "source": "/feed/", "destination": "/", "permanent": true },
-    { "source": "/wp-admin/(.*)", "destination": "/", "permanent": false },
-    { "source": "/wp-login.php", "destination": "/", "permanent": false }
+    {
+      "source": "/en/cv/",
+      "destination": "/en/vitae/",
+      "permanent": true
+    },
+    {
+      "source": "/feed/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin/(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/wp-login.php",
+      "destination": "/",
+      "permanent": false
+    }
   ],
   "headers": [
-    { "source": "/wp-content/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
-    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
-    { "source": "/data/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+    {
+      "source": "/wp-content/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/data/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron-buzon",
+      "schedule": "*/10 * * * *"
+    }
   ]
 }

@@ -380,7 +380,7 @@ def cmd_buzon():
     im.login(gmail_user(), os.environ["GMAIL_APP_PASSWORD"].replace(" ", ""))
     im.select(all_mail(im), readonly=True)
     ids = []
-    for q in ('"subject:(jonandoni-web Ficha) newer_than:30d"', f'"to:({buzon()}) newer_than:30d"'):
+    for q in ('"subject:(jonandoni-web Ficha) newer_than:30d"', f'"{{to:{buzon()} deliveredto:{buzon()}}} newer_than:30d"'):
         typ, data = im.search(None, "X-GM-RAW", q)
         ids += [i for i in (data[0].split() if data and data[0] else []) if i not in ids]
     allowed = [a.lower() for a in CFG.get("remitentes_permitidos", []) if a] + [gmail_user().lower()]
