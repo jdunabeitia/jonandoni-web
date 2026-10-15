@@ -1,6 +1,19 @@
 [
  {
   "year": 2026,
+  "topic": "Lectura y aprendizaje",
+  "type": "Capítulo / libro",
+  "title": "An Eye-Tracking Study on Text Accessibility and Comprehension",
+  "authors": "Navas-León, S.; Duñabeitia, J.A.",
+  "journal": "Advances in Applied Technologies for Disability and Inclusion · 2026 · 226–233 · DOI: 10.1007/978-3-032-18746-8_31",
+  "journal_en": "Advances in Applied Technologies for Disability and Inclusion · 2026 · 226–233 · DOI: 10.1007/978-3-032-18746-8_31",
+  "doi": "10.1007/978-3-032-18746-8_31",
+  "pdf": "",
+  "source": "https://doi.org/10.1007/978-3-032-18746-8_31",
+  "citation": "Navas-León, S., & Duñabeitia, J. A. (2026). An Eye-Tracking Study on Text Accessibility and Comprehension. Advances in Applied Technologies for Disability and Inclusion, 226–233. https://doi.org/10.1007/978-3-032-18746-8_31"
+ },
+ {
+  "year": 2026,
   "topic": "Otros",
   "type": "Artículo",
   "title": "MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research",
