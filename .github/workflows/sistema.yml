@@ -8,8 +8,20 @@ on:
       tarea:
         description: "¿Qué quieres hacer?"
         type: choice
-        options: [instalar, prueba, quincenal, buzon]
-        default: instalar
+        options: [instalar, prueba, quincenal, buzon, reenviar, accion]
+        default: buzon
+      ficha:
+        description: "(uso interno de los botones)"
+        required: false
+      accion:
+        description: "(uso interno de los botones)"
+        required: false
+      etiqueta:
+        description: "(uso interno de los botones)"
+        required: false
+      codigo:
+        description: "(uso interno de los botones)"
+        required: false
 permissions:
   contents: write
 concurrency:
@@ -23,6 +35,10 @@ jobs:
       GMAIL_USER: ${{ secrets.GMAIL_USER }}
       GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       FICHA_SECRET: ${{ secrets.FICHA_SECRET }}
+      FICHA: ${{ inputs.ficha }}
+      ACCION: ${{ inputs.accion }}
+      ETIQUETA: ${{ inputs.etiqueta }}
+      CODIGO: ${{ inputs.codigo }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -58,3 +74,4 @@ jobs:
       - name: Avisar por correo si algo falla
         if: failure() && env.GMAIL_USER != ''
         run: python sistema.py aviso_error
+ 
