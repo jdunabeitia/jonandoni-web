@@ -85,15 +85,14 @@
   "year": 2026,
   "topic": "Lectura y aprendizaje",
   "type": "Artículo",
-  "title": "Corpus for Orthographic and Emotional Factors in Word and Nonword Recognition",
+  "title": "Corpus for orthographic and emotional factors in word and nonword recognition",
   "authors": "Baciero, A.; Hinojosa, J.A.; Perea, M.; Gómez, P.; Duñabeitia, J.A.",
-  "journal": "Scientific Data · En prensa (2026)",
-  "journal_en": "Scientific Data · In press (2026)",
-  "doi": "",
+  "journal": "Scientific Data · 2026 · DOI: 10.1038/s41597-026-07671-9",
+  "journal_en": "Scientific Data · 2026 · DOI: 10.1038/s41597-026-07671-9",
+  "doi": "10.1038/s41597-026-07671-9",
   "pdf": "/wp-content/uploads/2026/06/342820_2_merged_1781609351.pdf",
-  "source": "",
-  "citation": "Baciero, A., Hinojosa, J.A., Perea, M., Gómez, P., Duñabeitia, J.A. (2026). Corpus for Orthographic and Emotional Factors in Word and Nonword Recognition. Scientific Data.",
-  "search": "corpus for orthographic and emotional factors in word and nonword recognition baciero, a.; hinojosa, j.a.; perea, m.; gómez, p.; duñabeitia, j.a. scientific data  lectura y aprendizaje"
+  "source": "https://doi.org/10.1038/s41597-026-07671-9",
+  "citation": "Baciero, A., Hinojosa, J. A., Perea, M., Gómez, P., & Duñabeitia, J. A. (2026). Corpus for orthographic and emotional factors in word and nonword recognition. Scientific Data. https://doi.org/10.1038/s41597-026-07671-9"
  },
  {
   "year": 2026,
