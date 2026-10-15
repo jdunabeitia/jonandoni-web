@@ -228,6 +228,15 @@ def send(subject, html, text):
         s.send_message(m)
     log("Correo enviado:", subject)
 
+def webbtn(label, f, accion, etiqueta="", color="#0f6fa8"):
+    """Botón que abre una página de jonandoni.com para confirmar (funciona en cualquier móvil o correo)."""
+    q = {"n": f["n"], "c": token(f["n"]), "a": accion, "t": f["title"][:80]}
+    if etiqueta:
+        q["e"] = etiqueta
+    href = CFG.get("web", "https://jonandoni.com") + "/api/ficha?" + urllib.parse.urlencode(q)
+    return (f'<a href="{esc(href)}" style="display:inline-block;margin:4px 6px 4px 0;padding:10px 14px;border-radius:8px;'
+            f'background:{color};color:#fff;text-decoration:none;font-weight:600;font-size:14px">{esc(label)}</a>')
+
 def btn(label, subject, body, color="#0f6fa8"):
     href = "mailto:" + buzon() + "?subject=" + urllib.parse.quote(subject) + "&body=" + urllib.parse.quote(body)
     return (f'<a href="{href}" style="display:inline-block;margin:4px 6px 4px 0;padding:10px 14px;border-radius:8px;'
@@ -256,20 +265,20 @@ def mail_ficha(f):
     re_subj = "Re: " + subj
     if f["kind"] in ("nueva", "prueba") and not e.get("topic"):
         buttons = "<p style='margin:14px 0 4px'><b>Publicar con la etiqueta:</b></p>" + "".join(
-            btn(t, re_subj, f"publicar\netiqueta: {t}\n\n(Si tienes el PDF, adjúntalo a este correo antes de enviarlo)\n") for t in topics())
+            webbtn(t, f, "publicar", t) for t in topics())
     elif f["kind"] == "info":
         buttons = ""
     else:
-        buttons = btn("✅ Aplicar", re_subj, "publicar\n\n(Si hace falta el PDF correcto, adjúntalo antes de enviar)\n", "#1a7f37")
+        buttons = webbtn("✅ Publicar" if f["kind"] == "nueva" else "✅ Aplicar", f, "publicar", color="#1a7f37")
     if f["kind"] != "info":
         buttons += btn("✏️ Corregir datos…", re_subj, edit_body(e), "#5c6b7d")
-    buttons += btn("Ignorar", re_subj, "ignorar\n", "#b3261e")
+    buttons += webbtn("Ignorar", f, "ignorar", color="#b3261e")
     table = f"<table style='border-collapse:collapse;font-size:14px;margin:6px 0 10px'>{ficha_rows(e)}</table>" if e else ""
     html = f"""<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;color:#142033;max-width:640px">
 <p style="font-size:13px;color:#5c6b7d;margin:0 0 6px">Web jonandoni.com · Ficha {n}</p>
 <h2 style="font-size:19px;margin:0 0 10px;font-family:Georgia,serif;color:#061a33">{esc(f['heading'])}</h2>
 <p style="margin:0 0 12px">{f['why']}</p>{table}{buttons}
-<p style="font-size:13px;color:#5c6b7d;margin-top:14px">Cada botón abre una respuesta ya escrita: <b>adjunta el PDF si lo tienes y pulsa Enviar</b>. También puedes responder a este correo escribiendo <i>publicar</i> (y la etiqueta) o <i>ignorar</i>. En unos 10 minutos recibirás la confirmación. Nada se publica sin tu respuesta.</p>
+<p style="font-size:13px;color:#5c6b7d;margin-top:14px">Los botones abren una página de tu web para <b>confirmar</b>; en 1-2 minutos recibirás la confirmación por correo. Para <b>añadir o cambiar el PDF</b>, o corregir datos, <b>responde a este correo</b> (adjunta el PDF y escribe <i>publicar</i>). Nada se publica sin tu confirmación.</p>
 <p style="font-size:12px;color:#8c959f;border-top:1px solid #d0d7de;padding-top:8px;margin-top:18px">{MARK}</p></div>"""
     text = (f"{f['heading']}\n\n{re.sub('<[^>]+>', '', f['why'])}\n\n" + edit_body(e).replace("publicar\n\n", "") +
             "\nResponde con 'publicar' (y la etiqueta, si falta) o 'ignorar'. Adjunta el PDF si lo tienes.\n\n" + MARK)
@@ -630,6 +639,36 @@ def cmd_prueba():
               "Esto es una <b>prueba</b>. Pulsa el botón de cualquier etiqueta, adjunta un PDF cualquiera y envía. "
               "En unos 10 minutos te llegará una confirmación. <b>No se cambiará nada en la web.</b>", e)
 
+def cmd_accion():
+    """Botón pulsado en el correo (llega desde la web vía GitHub)."""
+    n, accion, etiqueta = os.environ.get("FICHA", ""), os.environ.get("ACCION", ""), os.environ.get("ETIQUETA", "")
+    if not n.isdigit() or not hmac.compare_digest(os.environ.get("CODIGO", ""), token(int(n))):
+        log("Acción rechazada: código no válido"); return
+    f = load(FICHAS, {"items": {}})["items"].get(n)
+    if not f:
+        return
+    if f["status"] != "abierta":
+        return confirm(f, False, f"Esta ficha ya estaba cerrada ({f['status']}). No he hecho nada.")
+    if accion == "ignorar":
+        ign = load(IGN, {}); ign[f["key"]] = TODAY.isoformat(); save(IGN, ign)
+        close_ficha(int(n), "ignorada")
+        return confirm(f, True, "De acuerdo, no volveré a preguntarte por esto.")
+    if accion == "publicar":
+        try:
+            ok, detail = apply_ficha(f, {"topic": etiqueta} if etiqueta else {}, "", [])
+        except Exception:
+            confirm(f, False, "Ha habido un error. No se ha publicado nada.\n" + traceback.format_exc()[-1200:])
+            raise
+        if ok:
+            close_ficha(int(n), "publicada")
+        return confirm(f, ok, detail)
+
+def cmd_reenviar():
+    """Vuelve a enviarte las fichas abiertas (con los botones nuevos)."""
+    for f in load(FICHAS, {"items": {}})["items"].values():
+        if f["status"] == "abierta":
+            mail_ficha(f)
+
 def cmd_aviso_error():
     run = f"https://github.com/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
     send("[jonandoni-web] ⚠️ El sistema ha tenido un error",
@@ -638,4 +677,4 @@ def cmd_aviso_error():
 
 
 if __name__ == "__main__":
-    {"prueba": cmd_prueba, "quincenal": cmd_quincenal, "buzon": cmd_buzon, "aviso_error": cmd_aviso_error}[sys.argv[1]]()
+    {"accion": cmd_accion, "reenviar": cmd_reenviar, "prueba": cmd_prueba, "quincenal": cmd_quincenal, "buzon": cmd_buzon, "aviso_error": cmd_aviso_error}[sys.argv[1]]()
