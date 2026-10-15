@@ -395,13 +395,23 @@ def cmd_buzon():
 
 def handle_reply(subject, sender, text, pdfs, allowed):
     m = re.search(r"Ficha (\d+) · ([0-9a-f]{8})", subject)
+    if re.search(r"mailer-daemon|postmaster|no-?reply", sender):
+        return
     if not m:
         if re.search(r"\bnueva publicacion\b", norm(subject)) and not norm(subject).startswith(("re ", "fw", "rv")):
             nueva_manual(sender, own_part(text), pdfs, allowed)
+        else:   # nunca te quedas sin respuesta
+            send("[jonandoni-web] ⚠️ No he entendido tu correo",
+                 f"<p>He recibido tu correo «{esc(subject)}» (desde {esc(sender)}), pero no sé qué hacer con él.</p>"
+                 "<p>Para añadir una publicación, el asunto debe ser <b>Nueva publicación</b>. Para responder a una ficha, usa sus botones.</p>",
+                 f"He recibido tu correo «{subject}», pero no sé qué hacer con él.")
         return
     n = int(m.group(1))
     if not hmac.compare_digest(m.group(2), token(n)):
-        log("Código de ficha incorrecto; se ignora:", subject); return
+        log("Código de ficha incorrecto; se ignora:", subject)
+        send("[jonandoni-web] ⚠️ No reconozco esa ficha", f"<p>He recibido «{esc(subject)}», pero su código no es válido. No he hecho nada.</p>",
+             f"He recibido «{subject}», pero su código no es válido.")
+        return
     # El código secreto de la ficha ya garantiza que la respuesta es tuya. Así también valen
     # respuestas enviadas desde cualquiera de tus direcciones (alias de Gmail, Outlook, iCloud...)
     # e incluso las que Gmail no llegó a entregar: se leen desde tu carpeta de Enviados.
@@ -432,8 +442,7 @@ def handle_reply(subject, sender, text, pdfs, allowed):
 
 def nueva_manual(sender, text, pdfs, allowed):
     """Correo tuyo con asunto 'Nueva publicación' + DOI (+ PDF) -> ficha para revisar."""
-    if sender not in allowed:
-        log("Alta manual ignorada: remitente no autorizado", sender); return
+    # No se filtra por remitente: nada se publica sin tu respuesta a la ficha (con su código secreto).
     entries, fields = load(PUBS, []), parse_fields(text)
     m = re.search(r"10\.\d{4,9}/[^\s<>\"']+", text)
     doi = normdoi(m.group(0).rstrip(".,;)")) if m else normdoi(fields.get("doi", ""))
