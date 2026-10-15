@@ -3,8 +3,14 @@
 const nodemailer = require("nodemailer");
 
 module.exports = async (req, res) => {
-  if (process.env.CRON_SECRET && req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-    return res.status(401).json({ ok: false });
+  const secret = process.env.CRON_SECRET || "";
+  const url = new URL(req.url, "https://jonandoni.com");
+  const prueba = secret && url.searchParams.get("prueba") === secret;   // para probarlo desde el navegador
+  const esCron = /vercel-cron/i.test(req.headers["user-agent"] || "") || req.headers.authorization === `Bearer ${secret}`;
+  if (!prueba && !esCron) return res.status(401).json({ ok: false, motivo: "falta la clave" });
+  if (!process.env.GH_DISPATCH_TOKEN) {
+    console.error("Falta GH_DISPATCH_TOKEN");
+    return res.status(500).json({ ok: false, motivo: "Falta la variable GH_DISPATCH_TOKEN en Vercel" });
   }
   const r = await fetch("https://api.github.com/repos/jdunabeitia/jonandoni-web/actions/workflows/sistema.yml/dispatches", {
     method: "POST",
@@ -15,7 +21,10 @@ module.exports = async (req, res) => {
     },
     body: JSON.stringify({ ref: "main", inputs: { tarea: "buzon" } }),
   });
-  if (r.status === 204) return res.status(200).json({ ok: true });
+  if (r.status === 204) {
+    console.log("Buzón lanzado en GitHub");
+    return res.status(200).json({ ok: true, mensaje: "GitHub ha recibido la orden: mira la pestaña Actions" });
+  }
   const detail = `GitHub respondió ${r.status}: ${(await r.text()).slice(0, 300)}`;
   console.error(detail);
   // Aviso por correo como mucho una vez al día (p. ej. si la llave de GitHub ha caducado)

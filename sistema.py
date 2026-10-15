@@ -543,6 +543,11 @@ def apply_ficha(f, fields, raw, pdfs):
     save(PUBS, entries)
     build()
     ign = load(IGN, {}); ign[f["key"]] = TODAY.isoformat(); save(IGN, ign)
+    fs = load(FICHAS)   # cierra otras fichas abiertas del mismo trabajo
+    for x in fs["items"].values():
+        if x["status"] == "abierta" and x["n"] != f["n"] and x["kind"] == "nueva" and similar(x["entry"].get("title", ""), e["title"]) > .9:
+            x["status"] = "duplicada"
+    save(FICHAS, fs)
     return True, f"Publicado en español e inglés. {note}\nLa web tiene ahora {len(entries)} publicaciones."
 
 
