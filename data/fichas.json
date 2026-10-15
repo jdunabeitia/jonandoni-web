@@ -251,7 +251,7 @@
     "citation": "De Lucas, M., Duñabeitia, J. A. (2026). MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research. . https://doi.org/10.20944/preprints202609.0247.v1"
    },
    "title": "🆕 MAGICONTROL: A Normed Video Database of Magic Effects and Matched Cont",
-   "status": "abierta",
+   "status": "duplicada",
    "created": "2026-10-01"
   },
   "12": {
@@ -287,8 +287,9 @@
     "pdf_nombre": "data-11-00273.pdf"
    },
    "title": "🆕 MAGICONTROL: A Normed Video Database of Magic Effects and Matched Cont",
-   "status": "abierta",
-   "created": "2026-10-15"
+   "status": "publicada",
+   "created": "2026-10-15",
+   "closed": "2026-10-15"
   }
  }
 }

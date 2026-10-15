@@ -1,6 +1,19 @@
 [
  {
   "year": 2026,
+  "topic": "Otros",
+  "type": "Artículo",
+  "title": "MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research",
+  "authors": "De Lucas, M.; Duñabeitia, J.A.",
+  "journal": "Data · 2026 · 11(10), 273 · DOI: 10.3390/data11100273",
+  "journal_en": "Data · 2026 · 11(10), 273 · DOI: 10.3390/data11100273",
+  "doi": "10.3390/data11100273",
+  "pdf": "/wp-content/uploads/2026/10/de-lucas-2026-magicontrol-normed-video-database-magic-effects.pdf",
+  "source": "https://doi.org/10.3390/data11100273",
+  "citation": "De Lucas, M., & Duñabeitia, J. A. (2026). MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research. Data, 11(10), 273. https://doi.org/10.3390/data11100273"
+ },
+ {
+  "year": 2026,
   "topic": "Salud cognitiva",
   "type": "Capítulo / libro",
   "title": "Computerized Cognitive Assessment and Training Across the Lifespan: Evidence from CogniFit",
