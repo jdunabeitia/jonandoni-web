@@ -1,5 +1,5 @@
 {
- "next": 14,
+ "next": 23,
  "items": {
   "1": {
    "n": 1,
@@ -294,6 +294,219 @@
    "status": "publicada",
    "created": "2026-10-15",
    "closed": "2026-10-15"
+  },
+  "14": {
+   "n": 14,
+   "kind": "correccion",
+   "key": "corr:2026-corpus-for-orthographic-and-emotional-factors-in-word-and-no:publicado",
+   "heading": "Ya publicado: actualiza la ficha",
+   "why": "Tenías este trabajo <b>en prensa</b> y ya aparece publicado. Te propongo actualizarlo así:",
+   "entry": {
+    "year": 2026,
+    "topic": "Lectura y aprendizaje",
+    "type": "Artículo",
+    "title": "Corpus for orthographic and emotional factors in word and nonword recognition",
+    "authors": "Baciero, A.; Hinojosa, J.A.; Perea, M.; Gómez, P.; Duñabeitia, J.A.",
+    "journal": "Scientific Data · 2026 · DOI: 10.1038/s41597-026-07671-9",
+    "journal_en": "Scientific Data · 2026 · DOI: 10.1038/s41597-026-07671-9",
+    "doi": "10.1038/s41597-026-07671-9",
+    "pdf": "/wp-content/uploads/2026/06/342820_2_merged_1781609351.pdf",
+    "source": "https://doi.org/10.1038/s41597-026-07671-9",
+    "citation": "Baciero, A., Hinojosa, J. A., Perea, M., Gómez, P., & Duñabeitia, J. A. (2026). Corpus for orthographic and emotional factors in word and nonword recognition. Scientific Data. https://doi.org/10.1038/s41597-026-07671-9"
+   },
+   "title": "🛠 Corpus for orthographic and emotional factors in word and nonword reco",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "15": {
+   "n": 15,
+   "kind": "correccion",
+   "key": "corr:2026-singing-reveals-vocal-biomarkers-of-stress-and-cognitive-loa:publicado",
+   "heading": "Ya publicado: actualiza la ficha",
+   "why": "Tenías este trabajo <b>en prensa</b> y ya aparece publicado. Te propongo actualizarlo así:",
+   "entry": {
+    "year": 2026,
+    "topic": "Salud cognitiva",
+    "type": "Artículo",
+    "title": "Singing reveals vocal biomarkers of stress and cognitive load",
+    "authors": "Rodrigo-Herrero, I.; Navas-León, S.; Duñabeitia, J.A.",
+    "journal": "Discover Psychology · 2026 · 6(1), 181 · DOI: 10.1007/s44202-026-00679-7",
+    "journal_en": "Discover Psychology · 2026 · 6(1), 181 · DOI: 10.1007/s44202-026-00679-7",
+    "doi": "10.1007/s44202-026-00679-7",
+    "pdf": "/wp-content/uploads/2026/06/s44202-026-00679-7_reference.pdf",
+    "source": "https://doi.org/10.1007/s44202-026-00679-7",
+    "citation": "Rodrigo-Herrero, I., Navas-León, S., & Duñabeitia, J. A. (2026). Singing reveals vocal biomarkers of stress and cognitive load. Discover Psychology, 6(1), 181. https://doi.org/10.1007/s44202-026-00679-7"
+   },
+   "title": "🛠 Singing reveals vocal biomarkers of stress and cognitive load",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "16": {
+   "n": 16,
+   "kind": "nueva",
+   "key": "nueva:10.1007/978-3-032-18746-8_31",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2026,
+    "topic": "",
+    "type": "Capítulo / libro",
+    "title": "An Eye-Tracking Study on Text Accessibility and Comprehension",
+    "authors": "Navas-León, S.; Duñabeitia, J.A.",
+    "journal": "Advances in Applied Technologies for Disability and Inclusion · 2026 · 226–233 · DOI: 10.1007/978-3-032-18746-8_31",
+    "journal_en": "Advances in Applied Technologies for Disability and Inclusion · 2026 · 226–233 · DOI: 10.1007/978-3-032-18746-8_31",
+    "doi": "10.1007/978-3-032-18746-8_31",
+    "pdf": "",
+    "source": "https://doi.org/10.1007/978-3-032-18746-8_31",
+    "publisher": "Springer",
+    "citation": "Navas-León, S., & Duñabeitia, J. A. (2026). An Eye-Tracking Study on Text Accessibility and Comprehension. Advances in Applied Technologies for Disability and Inclusion, 226–233. https://doi.org/10.1007/978-3-032-18746-8_31"
+   },
+   "title": "🆕 An Eye-Tracking Study on Text Accessibility and Comprehension",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "17": {
+   "n": 17,
+   "kind": "nueva",
+   "key": "nueva:10.1007/978-3-032-18746-8_27",
+   "heading": "Nueva publicación en tu ORCID",
+   "why": "He encontrado esta publicación y aún no está en tu web.",
+   "entry": {
+    "year": 2026,
+    "topic": "",
+    "type": "Capítulo / libro",
+    "title": "Validation of the 80Plus Battery in the Oldest-Old",
+    "authors": "Aras, L.M.; Calvo, M.; Duñabeitia, J.A.",
+    "journal": "Advances in Applied Technologies for Disability and Inclusion · 2026 · 193–200 · DOI: 10.1007/978-3-032-18746-8_27",
+    "journal_en": "Advances in Applied Technologies for Disability and Inclusion · 2026 · 193–200 · DOI: 10.1007/978-3-032-18746-8_27",
+    "doi": "10.1007/978-3-032-18746-8_27",
+    "pdf": "",
+    "source": "https://doi.org/10.1007/978-3-032-18746-8_27",
+    "publisher": "Springer",
+    "citation": "Aras, L. M., Calvo, M., & Duñabeitia, J. A. (2026). Validation of the 80Plus Battery in the Oldest-Old. Advances in Applied Technologies for Disability and Inclusion, 193–200. https://doi.org/10.1007/978-3-032-18746-8_27"
+   },
+   "title": "🆕 Validation of the 80Plus Battery in the Oldest-Old",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "18": {
+   "n": 18,
+   "kind": "correccion",
+   "key": "corr:2026-impact-of-cognitive-training-on-professional-drivers-cogniti:nopdf",
+   "heading": "Corrección: No es un PDF",
+   "why": "El archivo vinculado no es un PDF:<br>/wp-content/uploads/2026/06/Discover-Psychology-2026.docx<br><br>Adjunta el PDF correcto al responder.<br><br>Corrección propuesta:",
+   "entry": {
+    "year": 2026,
+    "topic": "Salud cognitiva",
+    "type": "Artículo",
+    "title": "Impact of cognitive training on professional drivers’ cognitive profiles and performance",
+    "authors": "Tapia, J.L.; Fernández, P.; Duñabeitia, J.A.",
+    "journal": "Discover Psychology · En prensa (2026)",
+    "journal_en": "Discover Psychology · In press (2026)",
+    "doi": "",
+    "pdf": "/wp-content/uploads/2026/06/Discover-Psychology-2026.docx",
+    "source": "",
+    "citation": "Tapia, J.L., Fernández, P., Duñabeitia, J.A. (2026). Impact of cognitive training on professional drivers' cognitive profiles and performance. Discover Psychology.",
+    "search": "impact of cognitive training on professional drivers cognitive profiles and performance tapia, j.l.; fernández, p.; duñabeitia, j.a. discover psychology  salud cognitiva"
+   },
+   "title": "🛠 Impact of cognitive training on professional drivers’ cognitive profil",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "19": {
+   "n": 19,
+   "kind": "correccion",
+   "key": "corr:2026-validating-an-acute-stress-induction-method-for-spanish-nati:pdfotro",
+   "heading": "Corrección: PDF de otro artículo",
+   "why": "El nombre del PDF (s41235-026-00741-x_reference.pdf) no corresponde con el DOI 10.1007/s12144-026-09620-6. Puede ser el PDF de otro trabajo.<br><br>Adjunta el PDF correcto al responder.<br><br>Corrección propuesta:",
+   "entry": {
+    "year": 2026,
+    "topic": "Salud cognitiva",
+    "type": "Artículo",
+    "title": "Validating an acute stress induction method for Spanish native speakers",
+    "authors": "Navas-León, S.; Duñabeitia, J.A. ",
+    "journal": "Current Psychology · 2026 · 45, 1067 · DOI: 10.1007/s12144-026-09620-6",
+    "journal_en": "Current Psychology · 2026 · 45, 1067 · DOI: 10.1007/s12144-026-09620-6",
+    "doi": "10.1007/s12144-026-09620-6",
+    "pdf": "/wp-content/uploads/2026/06/s41235-026-00741-x_reference.pdf",
+    "source": "https://doi.org/10.1007/s12144-026-09620-6",
+    "citation": "Navas-León, S., Duñabeitia, J.A.  (2026). Validating an acute stress induction method for Spanish native speakers. Current Psychology, 45, 1067. https://doi.org/10.1007/s12144-026-09620-6",
+    "search": "validating an acute stress induction method for spanish native speakers navas-león, s.; duñabeitia, j.a.  current psychology 10.1007/s12144-026-09620-6 salud cognitiva"
+   },
+   "title": "🛠 Validating an acute stress induction method for Spanish native speaker",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "20": {
+   "n": 20,
+   "kind": "correccion",
+   "key": "corr:2024-two-legged-rat-an-analysis-of-insults-in-spanish-of-spain-in:fuente",
+   "heading": "Corrección: Enlace roto",
+   "why": "El enlace «Fuente original» está mal formado:<br>https://www..com/inward/record.uri?eid=2-s2.0-85192018267&amp;partnerID=40&amp;md5=f5bd14abf82333a38b8b030b56458e5e<br><br>Corrección propuesta:",
+   "entry": {
+    "year": 2024,
+    "topic": "Multilingüismo",
+    "type": "Artículo",
+    "title": "Two-legged rat: An analysis of insults in Spanish of Spain in the XXI century",
+    "authors": "Santos, M.D.C.M.; Duñabeitia, J.A.; Bernabeu, A.P.",
+    "journal": "Discurso y Sociedad · 2024 · 18(1) · 116–152",
+    "journal_en": "Discurso y Sociedad · 2024 · 18(1) · 116–152",
+    "doi": "",
+    "pdf": "/wp-content/uploads/2026/05/santos-2024-two-legged-rat-insults-spanish-spain.pdf",
+    "source": "",
+    "citation": "Santos, M.D.C.M., Duñabeitia, J.A., & Bernabeu, A.P. (2024). Two-legged rat: An analysis of insults in Spanish of Spain in the XXI century. Discurso y Sociedad, 18(1), 116--152.",
+    "search": "two-legged rat: an analysis of insults in spanish of spain in the xxi century santos, m.d.c.m.; duñabeitia, j.a.; bernabeu, a.p. discurso y sociedad  multilingüismo"
+   },
+   "title": "🛠 Two-legged rat: An analysis of insults in Spanish of Spain in the XXI ",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "21": {
+   "n": 21,
+   "kind": "correccion",
+   "key": "corr:2007-morphological-priming-involves-more-than-orthographic-primin:fuente",
+   "heading": "Corrección: Enlace roto",
+   "why": "El enlace «Fuente original» está mal formado:<br>https://www..com/inward/record.uri?eid=2-s2.0-34447117693&amp;partnerID=40&amp;md5=95890153311bba2d41865fd577fc9cef<br><br>Corrección propuesta:",
+   "entry": {
+    "year": 2007,
+    "topic": "Lectura y aprendizaje",
+    "type": "Artículo",
+    "title": "Morphological priming involves more than orthographic priming",
+    "authors": "Duñabeitia, J.A.; Perea, M.; Gutiérrez, E.; Mena, Y.; Carreiras, M.",
+    "journal": "Anuario de Psicologia · 2007 · 38(1) · 9–23",
+    "journal_en": "Anuario de Psicologia · 2007 · 38(1) · 9–23",
+    "doi": "",
+    "pdf": "",
+    "source": "",
+    "citation": "Duñabeitia, J.A., Perea, M., Gutiérrez, E., Mena, Y., & Carreiras, M. (2007). Morphological priming involves more than orthographic priming. Anuario de Psicologia, 38(1), 9--23.",
+    "search": "morphological priming involves more than orthographic priming duñabeitia, j.a.; perea, m.; gutiérrez, e.; mena, y.; carreiras, m. anuario de psicologia  lectura y aprendizaje"
+   },
+   "title": "🛠 Morphological priming involves more than orthographic priming",
+   "status": "abierta",
+   "created": "2026-10-15"
+  },
+  "22": {
+   "n": 22,
+   "kind": "correccion",
+   "key": "corr:2026-age-related-differences-in-processing-unconventional-text-fo:publicado",
+   "heading": "Corrección: Ya publicado",
+   "why": "Tenías este trabajo en prensa o sin DOI, y ya aparece publicado. Te propongo actualizarlo.<br><br>Corrección propuesta:",
+   "entry": {
+    "year": 2026,
+    "topic": "Lectura y aprendizaje",
+    "type": "Artículo",
+    "title": "Age-related differences in processing unconventional text formats",
+    "authors": "Alonso-Bernal, N.; González Alonso, J.; Gómez, P.; Duñabeitia, J.A.",
+    "journal": "Scientific Reports · 2026 · 16(1), 30569 · DOI: 10.1038/s41598-026-57876-6",
+    "journal_en": "Scientific Reports · 2026 · 16(1), 30569 · DOI: 10.1038/s41598-026-57876-6",
+    "doi": "10.1038/s41598-026-57876-6",
+    "pdf": "/wp-content/uploads/2026/06/leet_scientific_reports_2026.pdf",
+    "source": "https://doi.org/10.1038/s41598-026-57876-6",
+    "citation": "Alonso-Bernal, N., González Alonso, J., Gómez, P., & Duñabeitia, J. A. (2026). Age-related differences in processing unconventional text formats. Scientific Reports, 16(1), 30569. https://doi.org/10.1038/s41598-026-57876-6"
+   },
+   "title": "🛠 Age-related differences in processing unconventional text formats",
+   "status": "abierta",
+   "created": "2026-10-15"
   }
  }
 }
