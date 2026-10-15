@@ -1,5 +1,5 @@
 {
- "next": 13,
+ "next": 14,
  "items": {
   "1": {
    "n": 1,
@@ -264,6 +264,31 @@
    "title": "ℹ️ Trabajos antiguos de ORCID",
    "status": "abierta",
    "created": "2026-10-01"
+  },
+  "13": {
+   "n": 13,
+   "kind": "nueva",
+   "key": "nueva:10.3390/data11100273",
+   "heading": "Nueva publicación (enviada por ti)",
+   "why": "Revisa los datos y la cita APA. Si todo está bien, elige la etiqueta para publicarla. El PDF que adjuntaste ya está guardado: no hace falta volver a enviarlo.",
+   "entry": {
+    "year": 2026,
+    "topic": "Otros",
+    "type": "Artículo",
+    "title": "MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research",
+    "authors": "De Lucas, M.; Duñabeitia, J.A.",
+    "journal": "Data · 2026 · 11(10), 273 · DOI: 10.3390/data11100273",
+    "journal_en": "Data · 2026 · 11(10), 273 · DOI: 10.3390/data11100273",
+    "doi": "10.3390/data11100273",
+    "pdf": "",
+    "source": "https://doi.org/10.3390/data11100273",
+    "citation": "De Lucas, M., & Duñabeitia, J. A. (2026). MAGICONTROL: A Normed Video Database of Magic Effects and Matched Control Events for Experimental Research. Data, 11(10), 273. https://doi.org/10.3390/data11100273",
+    "pdf_pendiente": "data/pdf_pendientes/10-3390-data11100273.pdf",
+    "pdf_nombre": "data-11-00273.pdf"
+   },
+   "title": "🆕 MAGICONTROL: A Normed Video Database of Magic Effects and Matched Cont",
+   "status": "abierta",
+   "created": "2026-10-15"
   }
  }
 }
