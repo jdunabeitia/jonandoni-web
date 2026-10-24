@@ -2445,6 +2445,14 @@ body.page{margin:0;background:var(--jad-soft)}
 .jad-tr-card ul{margin:0;padding-left:18px;color:var(--jad-muted);line-height:1.55;font-size:15px}
 .jad-tr-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--jad-muted);margin-top:auto;padding-top:6px}
 .jad-tr-ask{font-weight:700;color:var(--jad-blue)!important;text-decoration:none}
+.jad-tr-exp{margin-top:40px;margin-bottom:10px}
+.jad-tr-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.jad-tr-exp-card{background:linear-gradient(135deg,var(--jad-navy),#0b3557);color:#fff;border-radius:var(--jad-radius);padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--jad-shadow)}
+.jad-tr-exp-card h3{margin:0;color:#fff;font-size:24px}.jad-tr-exp-card p{margin:0;color:rgba(255,255,255,.85);line-height:1.55}
+.jad-tr-exp-card .jad-card-icon{background:var(--jad-gold)}
+.jad-tr-exp-card .jad-tr-tags span{background:rgba(255,255,255,.12);color:#fff}
+@media (max-width:860px){.jad-tr-exp-grid{grid-template-columns:1fr}}
+.jad-training-main>section.jad-tr-exp+section{margin-top:44px}
 .jad-tr-home{margin-top:34px;margin-bottom:34px}
 .jad-tr-home-box{background:linear-gradient(135deg,var(--jad-navy),#0b3557);color:#fff;border-radius:var(--jad-radius);padding:32px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;box-shadow:var(--jad-shadow)}
 .jad-tr-home-box h2{color:#fff;margin:6px 0 10px;font-size:30px;line-height:1.15}

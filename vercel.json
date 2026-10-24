@@ -24,6 +24,16 @@
       "source": "/wp-login.php",
       "destination": "/",
       "permanent": false
+    },
+    {
+      "source": "/formacion/",
+      "destination": "/conferencias-formacion/",
+      "permanent": true
+    },
+    {
+      "source": "/en/training/",
+      "destination": "/en/talks-training/",
+      "permanent": true
     }
   ],
   "headers": [

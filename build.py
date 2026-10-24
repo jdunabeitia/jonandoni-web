@@ -161,15 +161,15 @@ fetch('/api/contacto',{{method:'POST',headers:{{'Content-Type':'application/json
 
 
 TR = {
-    "es": {"for": "Para", "contents": "Contenidos", "ask": "Solicitar esta formación →", "home_k": "Formación",
-           "home_h": "Formación basada en evidencia para escuelas, organizaciones y familias.",
-           "home_p": "Cursos breves desde 2 horas y formaciones multisesión de varios días, presenciales en Bilbao y Madrid o en línea.",
-           "home_cta": "Ver todas las formaciones →", "fmt": [("📍", "Presencial", "Bilbao y Madrid"), ("💻", "En línea", "En directo, desde cualquier lugar"),
+    "es": {"for": "Para", "contents": "Contenidos", "ask": "Solicitar conferencia o formación →", "home_k": "Conferencias y formación",
+           "home_h": "Conferencias y formación basadas en evidencia para escuelas, organizaciones y familias.",
+           "home_p": "Conferencias para congresos y eventos, cursos breves desde 2 horas y formaciones multisesión de varios días, presenciales en Bilbao y Madrid o en línea.",
+           "home_cta": "Ver conferencias y formación →", "fmt": [("🎙️", "Conferencias", "Congresos, jornadas y eventos"), ("📍", "Presencial o en línea", "Formación en Bilbao, Madrid o en línea"),
            ("⏱️", "Cursos breves", "Desde 2 horas"), ("📅", "Multisesión", "Formaciones de varios días")], "aud": "Dirigido a"},
-    "en": {"for": "For", "contents": "Contents", "ask": "Request this training →", "home_k": "Training",
-           "home_h": "Evidence-based training for schools, organisations and families.",
-           "home_p": "Short courses from 2 hours and multi-session programmes over several days, in person in Bilbao and Madrid or online.",
-           "home_cta": "See all training →", "fmt": [("📍", "In person", "Bilbao and Madrid"), ("💻", "Online", "Live, from anywhere"),
+    "en": {"for": "For", "contents": "Contents", "ask": "Request a talk or training →", "home_k": "Talks & training",
+           "home_h": "Evidence-based talks and training for schools, organisations and families.",
+           "home_p": "Talks for conferences and events, short courses from 2 hours and multi-session programmes over several days, in person in Bilbao and Madrid or online.",
+           "home_cta": "See talks and training →", "fmt": [("🎙️", "Talks", "Conferences, seminars and events"), ("📍", "In person or online", "Training in Bilbao, Madrid or online"),
            ("⏱️", "Short courses", "From 2 hours"), ("📅", "Multi-session", "Programmes over several days")], "aud": "Aimed at"},
 }
 
@@ -194,10 +194,10 @@ def training_catalog(lang, F):
 </article>''')
     return '<div class="jad-tr-grid">' + "\n".join(out) + """</div>
 <script>document.querySelectorAll('.jad-tr-ask').forEach(function(a){a.addEventListener('click',function(){
-var s=document.querySelector('#jadForm select[name=formacion]');if(s)s.value=a.dataset.curso;});});</script>"""
+var s=document.querySelector("#jadForm select[name=formacion]");if(s)s.value=a.dataset.curso;});});</script>"""
 
 def training_home(lang, F):
-    t, url = TR[lang], ("/formacion/" if lang == "es" else "/en/training/")
+    t, url = TR[lang], ("/conferencias-formacion/" if lang == "es" else "/en/talks-training/")
     tiles = "".join(f'<a class="jad-tr-tile" href="{url}#{c["id"] if lang == "es" else c["id_en"]}"><span>{c["icon"]}</span>{esc(c[lang]["title"])}</a>' for c in F["courses"])
     aud = "".join(f"<span>{esc(x)}</span>" for x in F["audiences"][lang])
     return f'''<section class="jad-container jad-tr-home">
@@ -212,17 +212,18 @@ def training_form(lang, F):
     es = lang == "es"
     L = dict(n="Nombre completo" if es else "Full name", e="Correo electrónico" if es else "Email",
              o="Organización o centro" if es else "Organisation or school", ty="Tipo de entidad" if es else "Type of organisation",
-             f="Formación de interés" if es else "Training of interest", m="Modalidad" if es else "Format",
-             d="Duración" if es else "Length", a="Nº aproximado de asistentes" if es else "Approx. number of participants",
+             f="Tema de interés" if es else "Topic of interest", m="Modalidad" if es else "Mode",
+             d="¿Qué necesitas?" if es else "What do you need?", a="Nº aproximado de asistentes" if es else "Approx. number of participants",
              fe="Fechas aproximadas" if es else "Approximate dates", msg="Objetivos y detalles" if es else "Goals and details",
-             send="Solicitar información" if es else "Request information", sel="— Selecciona —" if es else "— Select —",
+             send="Enviar solicitud" if es else "Send request", sel="— Selecciona —" if es else "— Select —",
              ok="¡Gracias! He recibido tu solicitud y te responderé con una propuesta lo antes posible." if es else "Thank you! I have received your request and will reply with a proposal as soon as possible.",
              err="No se ha podido enviar. Escríbeme a info@jonandoni.com." if es else "It could not be sent. Please write to info@jonandoni.com.",
-             wait="Enviando…" if es else "Sending…", ph="Por ejemplo: claustro de primaria, 25 docentes, interés en detección temprana…" if es else "For example: primary school staff, 25 teachers, interest in early detection…")
-    ent = F["audiences"][lang] + (["Otra"] if es else ["Other"])
+             wait="Enviando…" if es else "Sending…", ph="Por ejemplo: jornada para 200 docentes, o curso para un claustro de primaria interesado en la detección temprana…" if es else "For example: keynote for 200 teachers, or a course for primary school staff interested in early detection…")
+    ent = F["audiences"][lang] + (["Universidad o centro de investigación", "Institución pública", "Fundación", "Organizador de congreso o evento", "Otra"] if es else
+                                  ["University or research centre", "Public institution", "Foundation", "Conference or event organiser", "Other"])
     cur = [c[lang]["title"] for c in F["courses"]] + (["Varias / programa a medida"] if es else ["Several / tailor-made programme"])
-    mod = ["Presencial en Bilbao", "Presencial en Madrid", "En línea", "Por definir"] if es else ["In person in Bilbao", "In person in Madrid", "Online", "To be decided"]
-    dur = ["Curso breve (desde 2 horas)", "Formación multisesión (varios días)", "Por definir"] if es else ["Short course (from 2 hours)", "Multi-session programme (several days)", "To be decided"]
+    mod = ["Presencial en Bilbao", "Presencial en Madrid", "Presencial en otra ciudad", "En línea", "Por definir"] if es else ["In person in Bilbao", "In person in Madrid", "In person elsewhere", "Online", "To be decided"]
+    dur = ["Conferencia o charla", "Curso breve (desde 2 horas)", "Formación multisesión (varios días)", "Por definir"] if es else ["Talk or keynote", "Short course (from 2 hours)", "Multi-session programme (several days)", "To be decided"]
     o = lambda xs: "".join(f"<option>{esc(x)}</option>" for x in xs)
     return f"""<form class="jad-form" id="jadForm" novalidate>
 <label>{L["n"]} *<input name="nombre" required autocomplete="name"></label>
@@ -236,7 +237,7 @@ def training_form(lang, F):
 <label>{L["fe"]}<input name="fechas"></label></div>
 <label class="jad-hp" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>
 <label>{L["msg"]} *<textarea name="mensaje" rows="5" required placeholder="{esc(L["ph"])}"></textarea></label>
-<input type="hidden" name="motivo" value="{"Formación" if es else "Training"}"><input type="hidden" name="idioma" value="{lang}">
+<input type="hidden" name="motivo" value="{"Conferencia o formación" if es else "Talk or training"}"><input type="hidden" name="idioma" value="{lang}">
 <button class="jad-btn jad-btn-gold" type="submit">{L["send"]}</button>
 <p class="jad-form-msg" role="status"></p>
 </form>
@@ -298,6 +299,14 @@ body.page{margin:0;background:var(--jad-soft)}
 .jad-tr-card ul{margin:0;padding-left:18px;color:var(--jad-muted);line-height:1.55;font-size:15px}
 .jad-tr-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--jad-muted);margin-top:auto;padding-top:6px}
 .jad-tr-ask{font-weight:700;color:var(--jad-blue)!important;text-decoration:none}
+.jad-tr-exp{margin-top:40px;margin-bottom:10px}
+.jad-tr-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.jad-tr-exp-card{background:linear-gradient(135deg,var(--jad-navy),#0b3557);color:#fff;border-radius:var(--jad-radius);padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--jad-shadow)}
+.jad-tr-exp-card h3{margin:0;color:#fff;font-size:24px}.jad-tr-exp-card p{margin:0;color:rgba(255,255,255,.85);line-height:1.55}
+.jad-tr-exp-card .jad-card-icon{background:var(--jad-gold)}
+.jad-tr-exp-card .jad-tr-tags span{background:rgba(255,255,255,.12);color:#fff}
+@media (max-width:860px){.jad-tr-exp-grid{grid-template-columns:1fr}}
+.jad-training-main>section.jad-tr-exp+section{margin-top:44px}
 .jad-tr-home{margin-top:34px;margin-bottom:34px}
 .jad-tr-home-box{background:linear-gradient(135deg,var(--jad-navy),#0b3557);color:#fff;border-radius:var(--jad-radius);padding:32px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;box-shadow:var(--jad-shadow)}
 .jad-tr-home-box h2{color:#fff;margin:6px 0 10px;font-size:30px;line-height:1.15}
