@@ -1,0 +1,148 @@
+{
+ "audiences": {
+  "es": ["Escuelas", "Profesorado", "Familias", "Asociaciones", "Corporaciones", "Directivos"],
+  "en": ["Schools", "Teachers", "Families", "Associations", "Companies", "Executives"]
+ },
+ "courses": [
+  {
+   "id": "lectoescritura",
+   "id_en": "literacy",
+   "icon": "📖",
+   "audience": [0, 1, 2, 3],
+   "es": {
+    "title": "Adquisición de la lectoescritura",
+    "lead": "Cómo aprende el cerebro a leer y a escribir, y cómo acompañar ese proceso en el aula y en casa con lo que dice la evidencia científica.",
+    "modules": [
+     "Precursores de la lectura y la escritura: conciencia fonológica, vocabulario y conocimiento de las letras",
+     "Métodos de enseñanza de la lectura: qué funciona y por qué",
+     "Evaluación y detección temprana de dificultades lectoras",
+     "Bases neurales de la lectura: cómo cambia el cerebro al aprender a leer",
+     "De descifrar a comprender: fluidez, comprensión lectora y escritura"
+    ]
+   },
+   "en": {
+    "title": "Learning to read and write",
+    "lead": "How the brain learns to read and write, and how to support that process in the classroom and at home with what the scientific evidence says.",
+    "modules": [
+     "Precursors of reading and writing: phonological awareness, vocabulary and letter knowledge",
+     "Reading instruction methods: what works and why",
+     "Assessment and early detection of reading difficulties",
+     "Neural bases of reading: how the brain changes as we learn to read",
+     "From decoding to understanding: fluency, reading comprehension and writing"
+    ]
+   }
+  },
+  {
+   "id": "creatividad",
+   "id_en": "creativity",
+   "icon": "💡",
+   "audience": [0, 1, 4, 5],
+   "es": {
+    "title": "Creatividad",
+    "lead": "Qué es (y qué no es) la creatividad desde la ciencia cognitiva, y cómo cultivarla en las personas, en los equipos y en las organizaciones.",
+    "modules": [
+     "Mitos y realidades sobre la mente creativa",
+     "Fomento de la creatividad en la escuela",
+     "Creatividad en las organizaciones e innovación",
+     "Creatividad y talento: cómo identificarlos y desarrollarlos",
+     "Entornos, hábitos y dinámicas que favorecen las ideas nuevas"
+    ]
+   },
+   "en": {
+    "title": "Creativity",
+    "lead": "What creativity is (and is not) according to cognitive science, and how to nurture it in individuals, teams and organisations.",
+    "modules": [
+     "Myths and facts about the creative mind",
+     "Fostering creativity at school",
+     "Creativity in organisations and innovation",
+     "Creativity and talent: how to identify and develop them",
+     "Environments, habits and dynamics that spark new ideas"
+    ]
+   }
+  },
+  {
+   "id": "multilinguismo",
+   "id_en": "multilingualism",
+   "icon": "🌍",
+   "audience": [0, 1, 2, 4],
+   "es": {
+    "title": "Multilingüismo",
+    "lead": "Qué ocurre en el cerebro cuando convivimos con varias lenguas y cómo gestionarlas de forma eficiente en la escuela, en la familia y en la empresa.",
+    "modules": [
+     "Bases neurales del multilingüismo",
+     "Gestión eficiente de las lenguas en el día a día",
+     "Escuela y aprendizaje de lenguas: modelos y buenas prácticas",
+     "Las lenguas y la familia: criar en varios idiomas",
+     "Lenguas extranjeras en las organizaciones"
+    ]
+   },
+   "en": {
+    "title": "Multilingualism",
+    "lead": "What happens in the brain when we live with several languages, and how to manage them efficiently at school, in the family and at work.",
+    "modules": [
+     "Neural bases of multilingualism",
+     "Managing languages efficiently in everyday life",
+     "School and language learning: models and good practice",
+     "Languages and the family: raising children with several languages",
+     "Foreign languages in organisations"
+    ]
+   }
+  },
+  {
+   "id": "toma-de-decisiones",
+   "id_en": "decision-making",
+   "icon": "🧭",
+   "audience": [3, 4, 5, 1],
+   "es": {
+    "title": "Toma de decisiones",
+    "lead": "Cómo decidimos, por qué nos equivocamos de forma predecible y qué podemos hacer para decidir mejor, solos y en equipo.",
+    "modules": [
+     "Metacognición: pensar sobre cómo pensamos",
+     "Sesgos cognitivos y atajos mentales",
+     "Decidir bajo presión, con incertidumbre y con información incompleta",
+     "La lengua en la que decidimos: decisiones en un idioma extranjero",
+     "Herramientas prácticas para mejorar las decisiones en las organizaciones"
+    ]
+   },
+   "en": {
+    "title": "Decision-making",
+    "lead": "How we decide, why we make predictable mistakes and what we can do to decide better, individually and as a team.",
+    "modules": [
+     "Metacognition: thinking about how we think",
+     "Cognitive biases and mental shortcuts",
+     "Deciding under pressure, uncertainty and incomplete information",
+     "The language we decide in: decisions in a foreign language",
+     "Practical tools to improve decisions in organisations"
+    ]
+   }
+  },
+  {
+   "id": "salud-cognitiva",
+   "id_en": "cognitive-health",
+   "icon": "🧠",
+   "audience": [3, 4, 5, 2],
+   "es": {
+    "title": "Salud cognitiva",
+    "lead": "Cómo cuidar el cerebro a lo largo de la vida: qué protege nuestras capacidades, cómo medirlas y qué papel juegan las nuevas tecnologías.",
+    "modules": [
+     "Reserva cognitiva: qué es y cómo se construye",
+     "Envejecimiento saludable y prevención del deterioro",
+     "Estilos de vida y cerebro: sueño, actividad física, alimentación y vida social",
+     "Evaluación y entrenamiento cognitivo digital",
+     "Gemelos digitales cognitivos: la salud cognitiva personalizada"
+    ]
+   },
+   "en": {
+    "title": "Cognitive health",
+    "lead": "How to look after the brain across the lifespan: what protects our abilities, how to measure them and the role of new technologies.",
+    "modules": [
+     "Cognitive reserve: what it is and how it is built",
+     "Healthy ageing and prevention of cognitive decline",
+     "Lifestyle and the brain: sleep, physical activity, nutrition and social life",
+     "Digital cognitive assessment and training",
+     "Digital cognitive twins: personalised cognitive health"
+    ]
+   }
+  }
+ ]
+}

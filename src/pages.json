@@ -46,5 +46,17 @@
   "title": "Contact · Jon Andoni Duñabeitia",
   "description": "Talks, scientific collaboration, consulting and R&D. Get in touch.",
   "alternate": "contacto/index.html"
+ },
+ "formacion/index.html": {
+  "lang": "es",
+  "title": "Formación · Jon Andoni Duñabeitia",
+  "description": "Cursos y talleres de lectoescritura, creatividad, multilingüismo, toma de decisiones y salud cognitiva. Presencial en Bilbao y Madrid, y en línea.",
+  "alternate": "en/training/index.html"
+ },
+ "en/training/index.html": {
+  "lang": "en",
+  "title": "Training · Jon Andoni Duñabeitia",
+  "description": "Courses and workshops on literacy, creativity, multilingualism, decision-making and cognitive health. In person in Bilbao and Madrid, and online.",
+  "alternate": "formacion/index.html"
  }
 }

@@ -134,11 +134,11 @@ new IntersectionObserver(function(e){{vis=e[0].isIntersecting;if(vis&&!timer){{r
 def contact_form(lang):
     es = lang == "es"
     L = (["Nombre completo", "Correo electrónico", "Organización", "Motivo", "Mensaje", "Enviar",
-          ["Conferencia o curso", "Colaboración científica", "Prensa y medios", "Otra"], "— Selecciona la opción —",
+          ["Conferencia", "Formación", "Colaboración científica", "Prensa y medios", "Otra"], "— Selecciona la opción —",
           "¡Gracias! He recibido tu mensaje y te responderé lo antes posible.", "No se ha podido enviar. Escríbeme a info@jonandoni.com.", "Enviando…"]
          if es else
          ["Full name", "Email", "Institution", "Reason", "Message", "Send",
-          ["Conference or course", "Scientific collaboration", "Press and media", "Other"], "— Select the option —",
+          ["Talk", "Training", "Scientific collaboration", "Press and media", "Other"], "— Select the option —",
           "Thank you! I have received your message and will reply as soon as possible.", "It could not be sent. Please write to info@jonandoni.com.", "Sending…"])
     opts = "".join(f"<option>{esc(o)}</option>" for o in L[6])
     return f"""<form class="jad-form" id="jadForm" novalidate>
@@ -157,6 +157,94 @@ f.addEventListener('submit',function(e){{e.preventDefault();if(!f.reportValidity
 fetch('/api/contacto',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(Object.fromEntries(new FormData(f)))}})
 .then(function(r){{if(!r.ok)throw 0;f.reset();m.className='jad-form-msg ok';m.textContent={json.dumps(L[8])};}})
 .catch(function(){{m.className='jad-form-msg err';m.textContent={json.dumps(L[9])};}})
+.finally(function(){{b.disabled=false;b.textContent=old;}});}});}})();</script>"""
+
+
+TR = {
+    "es": {"for": "Para", "contents": "Contenidos", "ask": "Solicitar esta formación →", "home_k": "Formación",
+           "home_h": "Formación basada en evidencia para escuelas, organizaciones y familias.",
+           "home_p": "Cursos breves desde 2 horas y formaciones multisesión de varios días, presenciales en Bilbao y Madrid o en línea.",
+           "home_cta": "Ver todas las formaciones →", "fmt": [("📍", "Presencial", "Bilbao y Madrid"), ("💻", "En línea", "En directo, desde cualquier lugar"),
+           ("⏱️", "Cursos breves", "Desde 2 horas"), ("📅", "Multisesión", "Formaciones de varios días")], "aud": "Dirigido a"},
+    "en": {"for": "For", "contents": "Contents", "ask": "Request this training →", "home_k": "Training",
+           "home_h": "Evidence-based training for schools, organisations and families.",
+           "home_p": "Short courses from 2 hours and multi-session programmes over several days, in person in Bilbao and Madrid or online.",
+           "home_cta": "See all training →", "fmt": [("📍", "In person", "Bilbao and Madrid"), ("💻", "Online", "Live, from anywhere"),
+           ("⏱️", "Short courses", "From 2 hours"), ("📅", "Multi-session", "Programmes over several days")], "aud": "Aimed at"},
+}
+
+def training_formats(lang, F):
+    t = TR[lang]
+    cards = "".join(f'<div class="jad-tr-fmt"><span>{i}</span><b>{esc(a)}</b><small>{esc(b)}</small></div>' for i, a, b in t["fmt"])
+    aud = "".join(f"<span>{esc(x)}</span>" for x in F["audiences"][lang])
+    return f'<div class="jad-tr-fmts">{cards}</div><div class="jad-tr-aud"><b>{t["aud"]}:</b> {aud}</div>'
+
+def training_catalog(lang, F):
+    t, out = TR[lang], []
+    for c in F["courses"]:
+        d, cid = c[lang], c["id"] if lang == "es" else c["id_en"]
+        mods = "".join(f"<li>{esc(m)}</li>" for m in d["modules"])
+        aud = "".join(f"<span>{esc(F['audiences'][lang][i])}</span>" for i in c["audience"])
+        out.append(f'''<article class="jad-tr-card" id="{cid}">
+<div class="jad-tr-head"><div class="jad-card-icon">{c["icon"]}</div><h3>{esc(d["title"])}</h3></div>
+<p>{esc(d["lead"])}</p>
+<div class="jad-tr-label">{t["contents"]}</div><ul>{mods}</ul>
+<div class="jad-tr-tags"><b>{t["for"]}:</b> {aud}</div>
+<a class="jad-tr-ask" href="#solicitud" data-curso="{esc(d["title"])}">{t["ask"]}</a>
+</article>''')
+    return '<div class="jad-tr-grid">' + "\n".join(out) + """</div>
+<script>document.querySelectorAll('.jad-tr-ask').forEach(function(a){a.addEventListener('click',function(){
+var s=document.querySelector('#jadForm select[name=formacion]');if(s)s.value=a.dataset.curso;});});</script>"""
+
+def training_home(lang, F):
+    t, url = TR[lang], ("/formacion/" if lang == "es" else "/en/training/")
+    tiles = "".join(f'<a class="jad-tr-tile" href="{url}#{c["id"] if lang == "es" else c["id_en"]}"><span>{c["icon"]}</span>{esc(c[lang]["title"])}</a>' for c in F["courses"])
+    aud = "".join(f"<span>{esc(x)}</span>" for x in F["audiences"][lang])
+    return f'''<section class="jad-container jad-tr-home">
+<div class="jad-tr-home-box">
+<div class="jad-tr-home-copy"><div class="jad-small-kicker">{t["home_k"]}</div><h2>{t["home_h"]}</h2><p>{t["home_p"]}</p>
+<div class="jad-tr-aud">{aud}</div>
+<a class="jad-btn jad-btn-gold" href="{url}">{t["home_cta"]}</a></div>
+<div class="jad-tr-tiles">{tiles}</div>
+</div></section>'''
+
+def training_form(lang, F):
+    es = lang == "es"
+    L = dict(n="Nombre completo" if es else "Full name", e="Correo electrónico" if es else "Email",
+             o="Organización o centro" if es else "Organisation or school", ty="Tipo de entidad" if es else "Type of organisation",
+             f="Formación de interés" if es else "Training of interest", m="Modalidad" if es else "Format",
+             d="Duración" if es else "Length", a="Nº aproximado de asistentes" if es else "Approx. number of participants",
+             fe="Fechas aproximadas" if es else "Approximate dates", msg="Objetivos y detalles" if es else "Goals and details",
+             send="Solicitar información" if es else "Request information", sel="— Selecciona —" if es else "— Select —",
+             ok="¡Gracias! He recibido tu solicitud y te responderé con una propuesta lo antes posible." if es else "Thank you! I have received your request and will reply with a proposal as soon as possible.",
+             err="No se ha podido enviar. Escríbeme a info@jonandoni.com." if es else "It could not be sent. Please write to info@jonandoni.com.",
+             wait="Enviando…" if es else "Sending…", ph="Por ejemplo: claustro de primaria, 25 docentes, interés en detección temprana…" if es else "For example: primary school staff, 25 teachers, interest in early detection…")
+    ent = F["audiences"][lang] + (["Otra"] if es else ["Other"])
+    cur = [c[lang]["title"] for c in F["courses"]] + (["Varias / programa a medida"] if es else ["Several / tailor-made programme"])
+    mod = ["Presencial en Bilbao", "Presencial en Madrid", "En línea", "Por definir"] if es else ["In person in Bilbao", "In person in Madrid", "Online", "To be decided"]
+    dur = ["Curso breve (desde 2 horas)", "Formación multisesión (varios días)", "Por definir"] if es else ["Short course (from 2 hours)", "Multi-session programme (several days)", "To be decided"]
+    o = lambda xs: "".join(f"<option>{esc(x)}</option>" for x in xs)
+    return f"""<form class="jad-form" id="jadForm" novalidate>
+<label>{L["n"]} *<input name="nombre" required autocomplete="name"></label>
+<label>{L["e"]} *<input name="email" type="email" required autocomplete="email"></label>
+<div class="jad-form-row"><label>{L["o"]}<input name="organizacion" autocomplete="organization"></label>
+<label>{L["ty"]} *<select name="entidad" required><option value="">{L["sel"]}</option>{o(ent)}</select></label></div>
+<label>{L["f"]} *<select name="formacion" required><option value="">{L["sel"]}</option>{o(cur)}</select></label>
+<div class="jad-form-row"><label>{L["m"]} *<select name="modalidad" required><option value="">{L["sel"]}</option>{o(mod)}</select></label>
+<label>{L["d"]} *<select name="duracion" required><option value="">{L["sel"]}</option>{o(dur)}</select></label></div>
+<div class="jad-form-row"><label>{L["a"]}<input name="asistentes" inputmode="numeric"></label>
+<label>{L["fe"]}<input name="fechas"></label></div>
+<label class="jad-hp" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>
+<label>{L["msg"]} *<textarea name="mensaje" rows="5" required placeholder="{esc(L["ph"])}"></textarea></label>
+<input type="hidden" name="motivo" value="{"Formación" if es else "Training"}"><input type="hidden" name="idioma" value="{lang}">
+<button class="jad-btn jad-btn-gold" type="submit">{L["send"]}</button>
+<p class="jad-form-msg" role="status"></p>
+</form>
+<script>(function(){{var f=document.getElementById('jadForm'),m=f.querySelector('.jad-form-msg'),b=f.querySelector('button');
+f.addEventListener('submit',function(e){{e.preventDefault();if(!f.reportValidity())return;b.disabled=true;var old=b.textContent;b.textContent={json.dumps(L["wait"])};
+fetch('/api/contacto',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(Object.fromEntries(new FormData(f)))}})
+.then(function(r){{if(!r.ok)throw 0;f.reset();m.className='jad-form-msg ok';m.textContent={json.dumps(L["ok"])};}})
+.catch(function(){{m.className='jad-form-msg err';m.textContent={json.dumps(L["err"])};}})
 .finally(function(){{b.disabled=false;b.textContent=old;}});}});}})();</script>"""
 
 
@@ -190,6 +278,35 @@ body.page{margin:0;background:var(--jad-soft)}
 .jad-form button{justify-self:start;border:0;cursor:pointer}
 .jad-form button[disabled]{opacity:.6;cursor:wait}
 .jad-hp{position:absolute!important;left:-9999px!important;height:1px;overflow:hidden}
+.jad-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.jad-form-row{grid-template-columns:1fr}}
+/* ===== Formación ===== */
+.jad-training-main>section:first-child{margin-top:40px}
+.jad-training-main .jad-section-title{margin-bottom:18px}
+.jad-tr-fmts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 14px}
+.jad-tr-fmt{background:#fff;border:1px solid var(--jad-border);border-radius:var(--jad-radius-sm);padding:14px 16px;display:grid;gap:2px;box-shadow:var(--jad-shadow-soft)}
+.jad-tr-fmt span{font-size:22px}.jad-tr-fmt b{color:var(--jad-navy);font-size:16px}.jad-tr-fmt small{color:var(--jad-muted);font-size:13px}
+.jad-tr-aud{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 26px;color:var(--jad-muted);font-size:14px}
+.jad-tr-aud span,.jad-tr-tags span{background:rgba(15,111,168,.08);color:var(--jad-blue);border-radius:999px;padding:5px 11px;font-weight:600;font-size:13px}
+.jad-tr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.jad-tr-card{background:#fff;border:1px solid var(--jad-border);border-radius:var(--jad-radius);padding:24px;box-shadow:var(--jad-shadow-soft);display:flex;flex-direction:column;gap:10px;scroll-margin-top:90px}
+.jad-tr-card:last-child:nth-child(odd){grid-column:1/-1}
+.jad-tr-head{display:flex;align-items:center;gap:12px}.jad-tr-head .jad-card-icon{margin:0}
+.jad-tr-card h3{margin:0;font-size:24px;color:var(--jad-navy)}
+.jad-tr-card p{margin:0;color:var(--jad-text);line-height:1.55}
+.jad-tr-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--jad-gold);margin-top:4px}
+.jad-tr-card ul{margin:0;padding-left:18px;color:var(--jad-muted);line-height:1.55;font-size:15px}
+.jad-tr-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--jad-muted);margin-top:auto;padding-top:6px}
+.jad-tr-ask{font-weight:700;color:var(--jad-blue)!important;text-decoration:none}
+.jad-tr-home{margin-top:34px;margin-bottom:34px}
+.jad-tr-home-box{background:linear-gradient(135deg,var(--jad-navy),#0b3557);color:#fff;border-radius:var(--jad-radius);padding:32px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;box-shadow:var(--jad-shadow)}
+.jad-tr-home-box h2{color:#fff;margin:6px 0 10px;font-size:30px;line-height:1.15}
+.jad-tr-home-box p{color:rgba(255,255,255,.82);margin:0 0 14px;line-height:1.55}
+.jad-tr-home-box .jad-tr-aud{margin-bottom:18px}.jad-tr-home-box .jad-tr-aud span{background:rgba(255,255,255,.12);color:#fff}
+.jad-tr-tiles{display:grid;gap:10px}
+.jad-tr-tile{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--jad-radius-sm);padding:13px 16px;color:#fff!important;text-decoration:none;font-weight:700;transition:background .2s}
+.jad-tr-tile:hover{background:rgba(255,255,255,.16)}.jad-tr-tile span{font-size:20px}
+@media (max-width:860px){.jad-tr-fmts{grid-template-columns:repeat(2,1fr)}.jad-tr-grid,.jad-tr-home-box{grid-template-columns:1fr}.jad-tr-home-box{padding:24px}.jad-tr-home-box h2{font-size:24px}}
 .jad-form-msg{margin:0;font-weight:600}.jad-form-msg.ok{color:#137333}.jad-form-msg.err{color:#b3261e}
 """
 
@@ -225,6 +342,7 @@ def head(path, meta, css_v):
 def main():
     pubs, i18n, pages = load("data/publications.json"), load("data/i18n.json"), load("src/pages.json")
     cites = load("data/citations.json")
+    F = load("src/formaciones.json")
     os.makedirs(P("public/assets"), exist_ok=True)
     os.makedirs(P("public/data"), exist_ok=True)
     css = open(P("src/site.css"), encoding="utf-8").read() + EXTRA_CSS
@@ -239,6 +357,10 @@ def main():
                     .replace("<!--PUBS_ARCHIVE-->", archive(pubs, lang, i18n))
                     .replace("<!--CITES_CHART-->", chart(lang, cites))
                     .replace("<!--CONTACT_FORM-->", contact_form(lang))
+                    .replace("<!--TRAINING_FORMATS-->", training_formats(lang, F))
+                    .replace("<!--TRAINING_CATALOG-->", training_catalog(lang, F))
+                    .replace("<!--TRAINING_HOME-->", training_home(lang, F))
+                    .replace("<!--TRAINING_FORM-->", training_form(lang, F))
                     .replace("{{PUBS_TOTAL}}", str(len(pubs)))
                     .replace("{{CITES}}", f"{c100:,}".replace(",", "." if lang == "es" else ",")))
         out = P("public", path)

@@ -1,0 +1,137 @@
+<div class="jad-home jad-contact-page jad-training-page">
+<header class="jad-subhero" id="training">
+<nav class="jad-nav">
+<div class="jad-container jad-nav-inner">
+<a class="jad-logo" href="/en/">
+<span aria-hidden="true" class="jad-logo-mark">
+<svg class="jad-brain-icon" viewbox="0 0 64 64">
+<path d="M24.5 12.5c-6.3 0-11.4 4.7-11.4 10.6 0 1.1.2 2.2.6 3.2-4.2 1.9-7.1 6.1-7.1 10.9 0 6.6 5.4 12 12 12h1.1c1.6 4.1 5.5 7 10.1 7 3.2 0 6.1-1.4 8.1-3.7 1.9 1.6 4.3 2.6 7 2.6 6 0 10.9-4.9 10.9-10.9 0-1.7-.4-3.3-1.1-4.8 3-2.1 4.9-5.6 4.9-9.5 0-6.4-5.2-11.6-11.6-11.6-.7 0-1.4.1-2.1.2-1.8-4.2-5.9-7.1-10.7-7.1-3.4 0-6.5 1.5-8.6 3.8-1.7-1.7-4.1-2.7-6.1-2.7Z"></path>
+<path d="M22.5 22.5c2.9 0 5.2 2.3 5.2 5.2M38.7 21.1c-3.1.3-5.6 2.9-5.6 6.1M18.7 36.5c3.6 0 6.5 2.9 6.5 6.5M42.4 36.1c-3.9 0-7.1 3.2-7.1 7.1M28.3 30.3h8.6M32.6 30.3v10.8"></path>
+</svg>
+</span>
+<span class="jad-logo-text">Jon Andoni<br/>Duñabeitia</span>
+</a>
+<div class="jad-menu">
+<a href="/en/">Home</a>
+<a class="jad-active" href="/en/training/">Training</a>
+<a href="/en/publications/">Publications</a>
+<a href="/en/vitae/">CV</a>
+<a href="/en/contact/">Contact</a>
+<span class="jad-lang">
+<a href="/formacion/">ES</a>
+<a class="jad-lang-active" href="/en/training/">EN</a>
+</span>
+</div>
+<button aria-expanded="false" aria-label="Abrir menú" class="jad-mobile-menu" type="button">
+
+  ☰
+
+</button>
+</div>
+</nav>
+<div class="jad-container jad-subhero-inner">
+<div class="jad-subhero-copy">
+<div class="jad-kicker">Training · courses · workshops</div>
+<h1>Training grounded in cognitive science, ready to apply from day one.</h1>
+<p>Courses and workshops on reading, creativity, languages, decision-making and cognitive health, built on scientific evidence and tailored to each audience.</p>
+</div>
+<div class="jad-contact-highlight">
+<div class="jad-contact-highlight-icon">🎓</div>
+<h2>Formats</h2>
+<p>In person in <b>Bilbao</b> and <b>Madrid</b> · Online<br>Short courses <b>from 2 hours</b> · <b>Multi-session</b> programmes over several days</p>
+<a class="jad-direct-email" href="#solicitud">Request information ↓</a>
+</div>
+</div>
+</header>
+<main class="jad-main jad-contact-main jad-training-main">
+<section class="jad-container">
+<div class="jad-section-title"><div>
+<div class="jad-small-kicker">Portfolio</div>
+<h2>Five training areas</h2>
+<p>Each programme is adapted in length, depth and examples to its audience and goals. Topics can be combined into tailor-made programmes.</p>
+</div></div>
+<!--TRAINING_FORMATS-->
+<!--TRAINING_CATALOG-->
+</section>
+<section class="jad-container" id="solicitud">
+<div class="jad-contact-form-panel">
+<div class="jad-contact-form-copy">
+<div class="jad-small-kicker">Training request</div>
+<h2>Tell me what training you need.</h2>
+<p>Include the topic, audience, format and approximate dates. I will reply with a tailored proposal.</p>
+<div class="jad-contact-methods">
+<a href="mailto:info@jonandoni.com">✉️ info@jonandoni.com</a>
+<a href="/en/contact/">💬 Other enquiries</a>
+</div>
+</div>
+<div class="jad-wpforms-shell"><!--TRAINING_FORM--></div>
+</div>
+</section>
+<section class="jad-container jad-banner-section">
+<div class="jad-image-banner">
+<img alt="Jon Andoni Duñabeitia - cognitive science, talks and scientific collaboration" decoding="async" src="/wp-content/uploads/2026/05/jon_andoni_banner.png"/>
+</div>
+</section>
+</main>
+<footer class="jad-footer">
+<div class="jad-container jad-footer-inner">
+<div>
+<strong>Jon Andoni Duñabeitia</strong><br/>
+        Professor · Cognitive scientist · Speaker · Science communicator
+      </div>
+<div class="jad-footer-links">
+<a href="/en/">Home</a>
+<a href="/en/training/">Training</a>
+<a href="/en/publications/">Publications</a>
+<a href="/en/vitae/">CV</a>
+<a href="/en/contact/">Contact</a>
+<a href="/formacion/">ES</a>
+</div>
+</div>
+</footer>
+<script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll(".jad-mobile-menu").forEach(function (button) {
+
+      button.addEventListener("click", function () {
+
+        const navInner = button.closest(".jad-nav-inner");
+
+        const isOpen = navInner.classList.toggle("jad-menu-open");
+
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+        button.textContent = isOpen ? "×" : "☰";
+
+      });
+
+    });
+
+    document.querySelectorAll(".jad-menu a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        const navInner = link.closest(".jad-nav-inner");
+
+        const button = navInner ? navInner.querySelector(".jad-mobile-menu") : null;
+
+        if (navInner && button) {
+
+          navInner.classList.remove("jad-menu-open");
+
+          button.setAttribute("aria-expanded", "false");
+
+          button.textContent = "☰";
+
+        }
+
+      });
+
+    });
+
+  });
+
+</script>
+</div>

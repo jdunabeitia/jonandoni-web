@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://jonandoni.com/en/contact/"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32"><link rel="icon" href="/assets/icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/assets/site.css?v=a31c58e0">
+<link rel="stylesheet" href="/assets/site.css?v=ad4e8895">
 </head>
 <body class="page">
 <div class="jad-home jad-contact-page">
@@ -29,6 +29,7 @@
 </a>
 <div class="jad-menu">
 <a href="/en/">Home</a>
+<a href="/en/training/">Training</a>
 <a href="/en/publications/">Publications</a>
 <a href="/en/vitae/">CV</a>
 <a class="jad-active" href="/en/contact/">Contact</a>
@@ -131,7 +132,7 @@
 <label>Email *<input name="email" type="email" required autocomplete="email"></label>
 <label>Institution<input name="organizacion" autocomplete="organization"></label>
 <label class="jad-hp" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>
-<label>Reason *<select name="motivo" required><option value="">— Select the option —</option><option>Conference or course</option><option>Scientific collaboration</option><option>Press and media</option><option>Other</option></select></label>
+<label>Reason *<select name="motivo" required><option value="">— Select the option —</option><option>Talk</option><option>Training</option><option>Scientific collaboration</option><option>Press and media</option><option>Other</option></select></label>
 <label>Message *<textarea name="mensaje" rows="6" required></textarea></label>
 <input type="hidden" name="idioma" value="en">
 <button class="jad-btn jad-btn-blue" type="submit">Send</button>
@@ -159,6 +160,7 @@ fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'}
       </div>
 <div class="jad-footer-links">
 <a href="/en/">Home</a>
+<a href="/en/training/">Training</a>
 <a href="/en/publications/">Publications</a>
 <a href="/en/vitae/">CV</a>
 <a href="/contacto/">ES</a>

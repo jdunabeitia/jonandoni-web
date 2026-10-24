@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://jonandoni.com/contacto/"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32"><link rel="icon" href="/assets/icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/assets/site.css?v=a31c58e0">
+<link rel="stylesheet" href="/assets/site.css?v=ad4e8895">
 </head>
 <body class="page">
 <div class="jad-home jad-contact-page">
@@ -29,6 +29,7 @@
 </a>
 <div class="jad-menu">
 <a href="/">Inicio</a>
+<a href="/formacion/">Formación</a>
 <a href="/publicaciones-cientificas/">Publicaciones</a>
 <a href="/cv/">CV</a>
 <a class="jad-active" href="/contacto/">Contacto</a>
@@ -135,7 +136,7 @@
 <label>Correo electrónico *<input name="email" type="email" required autocomplete="email"></label>
 <label>Organización<input name="organizacion" autocomplete="organization"></label>
 <label class="jad-hp" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>
-<label>Motivo *<select name="motivo" required><option value="">— Selecciona la opción —</option><option>Conferencia o curso</option><option>Colaboración científica</option><option>Prensa y medios</option><option>Otra</option></select></label>
+<label>Motivo *<select name="motivo" required><option value="">— Selecciona la opción —</option><option>Conferencia</option><option>Formación</option><option>Colaboración científica</option><option>Prensa y medios</option><option>Otra</option></select></label>
 <label>Mensaje *<textarea name="mensaje" rows="6" required></textarea></label>
 <input type="hidden" name="idioma" value="es">
 <button class="jad-btn jad-btn-blue" type="submit">Enviar</button>
@@ -163,6 +164,7 @@ fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'}
       </div>
 <div class="jad-footer-links">
 <a href="/">Inicio</a>
+<a href="/formacion/">Formación</a>
 <a href="/publicaciones-cientificas/">Publicaciones</a>
 <a href="/cv/">CV</a>
 <a href="/en/contact/">EN</a>
