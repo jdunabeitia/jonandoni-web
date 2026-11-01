@@ -1,5 +1,5 @@
 {
- "next": 23,
+ "next": 24,
  "items": {
   "1": {
    "n": 1,
@@ -518,6 +518,29 @@
    "status": "publicada",
    "created": "2026-10-15",
    "closed": "2026-10-15"
+  },
+  "23": {
+   "n": 23,
+   "kind": "correccion",
+   "key": "corr:2026-impact-of-cognitive-training-on-professional-drivers-cogniti:publicado",
+   "heading": "Corrección: Ya publicado",
+   "why": "Tenías este trabajo en prensa o sin DOI, y ya aparece publicado. Te propongo actualizarlo.<br><br>Corrección propuesta:",
+   "entry": {
+    "year": 2026,
+    "topic": "Salud cognitiva",
+    "type": "Artículo",
+    "title": "Impact of cognitive training on professional drivers' cognitive profiles and performance",
+    "authors": "Tapia, J.L.; Fernández, P.; Duñabeitia, J.A.",
+    "journal": "2026 · DOI: 10.21203/rs.3.rs-8842487/v1",
+    "journal_en": "2026 · DOI: 10.21203/rs.3.rs-8842487/v1",
+    "doi": "10.21203/rs.3.rs-8842487/v1",
+    "pdf": "/wp-content/uploads/2026/06/Discover-Psychology-2026.docx",
+    "source": "https://doi.org/10.21203/rs.3.rs-8842487/v1",
+    "citation": "Tapia, J. L., Fernández, P., & Duñabeitia, J. A. (2026). Impact of cognitive training on professional drivers' cognitive profiles and performance. . https://doi.org/10.21203/rs.3.rs-8842487/v1"
+   },
+   "title": "🛠 Impact of cognitive training on professional drivers' cognitive profil",
+   "status": "abierta",
+   "created": "2026-11-01"
   }
  }
 }
